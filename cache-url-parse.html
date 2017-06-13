@@ -58,7 +58,7 @@
 		btn.onclick = function () {
 			if (input.value) {
 				var util = require('util');
-				output.innerHTML = util.parseCacheUrl(input.value, checkbox.checked);
+				output.innerHTML = util.parseCacheUrl(input.value.trim(), checkbox.checked);
 			}
 		}
 	</script>
