@@ -1,0 +1,66 @@
+<!doctype html>
+<html mip>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+    <style type="text/css">
+    	body {
+    		word-break: break-all;
+    	}
+    	#input {
+    		width: 80%;
+    		height: 30px;
+    		display: block;
+    		margin: 20px auto;
+    		padding: 2px 15px;
+    		border: 1px solid #cccaca;
+    		font-size: 15px;
+    	}
+    	.outer {
+    		width: 85%;
+    		margin: 20px auto;
+    	}
+    	button {
+    		display: block;
+    		width: 100px;
+    		height: 30px;
+    		margin: 0 auto;
+    		color: #fff;
+		    background-color: #337ab7;
+		    border-color: #2e6da4;
+			border: 1px solid transparent;
+			border-radius: 4px;
+    	}
+    	span {
+    		display: block;
+    		width: 85%;
+    		margin: 20px auto;
+    		color: #aaa;
+    		font-size: 15px;
+    	}
+    </style>
+</head>
+
+<body>
+	<div>
+		<input type="text" id="input" placeholder="再此输入URL">
+		<div class="outer">是否是图片地址：<input type="checkbox" id="checkbox" placeholder="是否是图片地址"></div>
+		<span id="output"></span>
+		<button id="btn">转换</button>
+	</div>
+	<script src="./mip.js"></script>
+	<script type="text/javascript">
+		var btn = document.getElementById('btn');
+		var checkbox = document.getElementById('checkbox');
+		var output = document.getElementById('output');
+		var input = document.getElementById('input');
+		btn.onclick = function () {
+			if (input.value) {
+				var util = require('util');
+				output.innerHTML = util.parseCacheUrl(input.value, checkbox.checked);
+			}
+		}
+	</script>
+</body>
+</html>
