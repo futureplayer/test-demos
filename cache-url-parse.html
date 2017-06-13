@@ -45,20 +45,18 @@
 <body>
 	<div>
 		<input type="text" id="input" placeholder="再此输入URL">
-		<div class="outer">是否是图片地址：<input type="checkbox" id="checkbox" placeholder="是否是图片地址"></div>
 		<span id="output"></span>
 		<button id="btn">转换</button>
 	</div>
 	<script src="./mip.js"></script>
 	<script type="text/javascript">
 		var btn = document.getElementById('btn');
-		var checkbox = document.getElementById('checkbox');
 		var output = document.getElementById('output');
 		var input = document.getElementById('input');
 		btn.onclick = function () {
 			if (input.value) {
 				var util = require('util');
-				output.innerHTML = util.parseCacheUrl(input.value.trim(), checkbox.checked);
+				output.innerHTML = util.parseCacheUrl(input.value.trim());
 			}
 		}
 	</script>
