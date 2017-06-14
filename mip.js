@@ -5622,26 +5622,35 @@ define('util', [
         url = urlParas.join('//');
         return prefix + url;
     }
-    function parseCacheUrl(url, type) {
+    /**
+     * Exchange cache url to origin url.
+     * Reg result has many aspects, it's following
+     *  reg[0] whole url
+     *  reg[1] url protocol
+     *  reg[2] url mip cache domain
+     *  reg[3] url domain extname
+     *  reg[4] /s flag
+     *  reg[5] origin url
+     * @param {string} url Source url.
+     * @return {string} origin url.
+     */
+    function parseCacheUrl(url) {
         if (!url) {
-            return url;
+            return;
         }
         if (!(url.indexOf('http') === 0 || url.indexOf('/') === 0)) {
             return url;
         }
-        var reg = new RegExp('^(http[s]:){0,1}(//mipcache.bdstatic.com){0,1}/[ic](/s){0,1}/(.*)$', 'g');
+        var reg = new RegExp('^(http[s]:){0,1}(//[a-zA-Z0-9][-a-zA-Z0-9]{0,62}' + '(.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+.?){0,1}/[ic](/s){0,1}/(.*)$', 'g');
         var result = reg.exec(url);
         if (!result) {
             return url;
         }
-        var uri = 'http:';
-        if (result[1]) {
-            uri = result[1];
-        } else if (result[3]) {
-            uri = 'https:';
-        }
-        if (result && result[4]) {
-            uri += '//' + result[4];
+        var uri = result[4] ? 'https:' : 'http:';
+        uri += result[5] ? '//' + result[5] : '';
+        var urlRegExp = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+        if (!urlRegExp.test(uri)) {
+            return url;
         }
         return uri;
     }
