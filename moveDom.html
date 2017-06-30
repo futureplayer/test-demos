@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html mip>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>move dom 测试</title>
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+    <link rel="canonical" href="">
+    <style mip-custom>
+    .outer {
+        border: 1px solid #aaa;
+        margin-bottom: 20px;
+    }
+
+    form,
+    .dist {
+        background: green;
+    }
+
+    pre {
+        width: 765px;
+        margin: 15px 0 0 0;
+        padding: 20px;
+        border: 0;
+        border: 1px dotted #785;
+        background: #f5f5f5;
+        line-height: 1.4;
+        font-family: Consolas;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <mip-form method="get" url="https://www.mipengine.org" clear class="outer1">
+            <div target="age2">年龄不能为空</div>
+            <input type="text" name="username2" validatetarget="username2" validatetype="must" placeholder="姓名">
+            <div target="username2">姓名不能为空</div>
+            <input type="number" name="age2" validatetarget="age2" validatetype="must" placeholder="年龄">
+            <div target="age2">年龄不能为空</div>
+            <input type="submit" value="提交">
+            <mip-img layout="responsive" width="350" height="263" src="http://ztd00.photos.bdimg.com/ztd/w%3D350%3Bq%3D70/sign=e3bb1c4b97ef76c6d0d2fd2ead2d8cc7/f703738da9773912b57d4b0bff198618367ae205.jpg">
+            </mip-img>
+        </mip-form>
+    </div>
+
+    <div class="outer outer2">
+        <div class="move1">
+            <p>来啊，移动呀！</p>
+            <p>来啊，移动呀！</p>
+        </div>
+        <div class="dist1 dist"></div>
+    </div>
+
+    <div class="outer outer3">
+        <div class="move2">
+            <p>来啊，移动呀！</p>
+            <p>来啊，移动呀！</p>
+        </div>
+        <div class="dist2 dist"></div>
+    </div>
+
+    <div class="outer outer4">
+        <div class="move3">
+            <p>来啊，移动呀！</p>
+            <p>来啊，移动呀！</p>
+        </div>
+        <div class="move4">
+            <p>来啊，移动呀！</p>
+            <p>来啊，移动呀！</p>
+        </div>
+        <div class="dist3 dist"></div>
+    </div>
+
+    <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
+    <script type="text/javascript" src="./mip-form.js"></script>
+    <script type="text/javascript">
+    var move1 = document.querySelector('.move1');
+    var move2 = document.querySelector('.move2');
+    var move3 = document.querySelector('.move3');
+    var move4 = document.querySelector('.move4');
+    var dist1 = document.querySelector('.dist1');
+    var dist2 = document.querySelector('.dist2');
+    var dist3 = document.querySelector('.dist3');
+
+    var outer1 = document.querySelector('.outer1');
+    var outer2 = document.querySelector('.outer2');
+    var outer3 = document.querySelector('.outer3');
+    var outer4 = document.querySelector('.outer4');
+    var doms = [move3, move4];
+
+    var util = require('util');
+    var dom = util.dom;
+    dom.insert(dist1, move1);
+    dom.insert(dist2, move2.children);
+    dom.insert(dist3, doms);
+    </script>
+    <script type="text/javascript" src="https://www.debuggap.com/statistic/debuggap.js"></script>
+</body>
+
+</html>
