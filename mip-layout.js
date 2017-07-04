@@ -3362,8 +3362,8 @@ define('dom/dom', ['require'], function (require) {
             if (this.contains(nodes[i], parent)) {
                 continue;
             }
-            if (nodes[i] !== parent) {
-              parent.appendChild(nodes[i]);
+            if (nodes[i] !== parent && parent.appendChild) {
+                parent.appendChild(nodes[i]);
             }
         }
     }
