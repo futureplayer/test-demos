@@ -3363,7 +3363,11 @@ define('dom/dom', ['require'], function (require) {
                 continue;
             }
             if (nodes[i] !== parent) {
-                parent.append(nodes[i]);
+                if (parent.append) {
+                  parent.append(nodes[i]);
+                } else  if (aprent.appendChild) {
+                  parent.appendChild(nodes[i]);
+                }                
             }
         }
     }
