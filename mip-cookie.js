@@ -5239,9 +5239,6 @@ define('utils/customStorage', [
      * @param {Object} storage it's local storage
      */
     function updateTime(storage) {
-        if (!storage) {
-            return;
-        }
         storage.u = new Date().getTime();
     }
     /**
@@ -5327,24 +5324,14 @@ define('utils/customStorage', [
      *
      * @return {boolean} Whether support ls
      */
-    LocalStorage.prototype._isCachePage = function () {
-        return fn.isCacheUrl(href);
-    };
-    /**
-     * Whether support Local Storage
-     *
-     * @return {boolean} Whether support ls
-     */
     LocalStorage.prototype._supportLs = function () {
         var support = false;
-        if (window.localStorage && window.localStorage.setItem) {
-            try {
-                window.localStorage.setItem('lsExisted', '1');
-                window.localStorage.removeItem('lsExisted');
-                support = true;
-            } catch (e) {
-                support = false;
-            }
+        try {
+            window.localStorage.setItem('lsExisted', '1');
+            window.localStorage.removeItem('lsExisted');
+            support = true;
+        } catch (e) {
+            support = false;
         }
         return support;
     };
@@ -5619,6 +5606,10 @@ define('utils/customStorage', [
      * @param {Object} opt request params
      */
     CookieStorage.prototype.delExceedCookie = function () {
+        // don't execute in origin page
+        if (this._notIframed()) {
+            return;
+        }
         var domain = window.location.hostname;
         var cks = document.cookie;
         var MINSIZE = 3 * 1024;
@@ -5631,17 +5622,19 @@ define('utils/customStorage', [
             var item = items[i].split('=');
             if (item && item.length > 1) {
                 var exp = new Date();
-                exp.setTime(exp.getTime() - 1000);
+                var key = item[0].trim();
+                var value = item[1].trim();
+                exp.setMilliseconds(exp.getMilliseconds() - 1 * 86400000);
                 this._set({
-                    key: item[0],
-                    value: item[1],
+                    key: key,
+                    value: value,
                     expires: exp,
                     domain: domain
                 });
-                if (this._get(item[0]) && window !== top) {
+                if (this._get(key)) {
                     this._set({
-                        key: item[0],
-                        value: item[1],
+                        key: key,
+                        value: value,
                         expires: exp,
                         domain: domain.split('.').slice(-2).join('.')
                     });
@@ -5653,6 +5646,14 @@ define('utils/customStorage', [
         }
     };
     /**
+     * Whether iframed or not
+     *
+     * @return {string} Whether iframed
+     */
+    CookieStorage.prototype._notIframed = function (name) {
+        return window === top;
+    };
+    /**
      * Get cookie
      *
      * @param {string} name cookie name
@@ -5660,10 +5661,10 @@ define('utils/customStorage', [
      */
     CookieStorage.prototype._get = function (name) {
         var cks = document.cookie;
-        var cookies = cks ? cks.split('; ') : [];
+        var cookies = cks ? cks.split(';') : [];
         for (var i = 0; i < cookies.length; i++) {
-            var items = cks.split('=');
-            if (items[0] === name) {
+            var items = cookies[i].split('=');
+            if (items[0].trim() === name.trim()) {
                 return items[1];
             }
         }
@@ -7513,7 +7514,7 @@ define('viewer', [
          * @public
          */
         isIframed: win !== top,
-        /** 
+        /**
          * Patch for iframe
          */
         patchForIframe: function () {
