@@ -13,32 +13,32 @@
     <script src="./mip-cookie.js"></script>
     <script type="text/javascript">
 
-    for (var i = 0; i < 30; i++) {
-        var str = 'a';
-        for (var j = 0; j < 205; j++) {
-            str += 'a';
-        };
+    // for (var i = 0; i < 30; i++) {
+    //     var str = 'a';
+    //     for (var j = 0; j < 205; j++) {
+    //         str += 'a';
+    //     };
 
-        document.cookie = "name" + i + "=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(i);
-    };
+    //     document.cookie = "name" + i + "=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(i);
+    // };
 
-    // setTimeout(function () {
-    //     document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
-    //     console.log(111111 + ' : ' + document.cookie.length);
-    // }, 1000);
-    // setTimeout(function () {
-    //     document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
-    //     console.log(222222 + ' : ' + document.cookie.length);
-    // }, 2000);
-    // setTimeout(function () {
-    //     document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
-    //     console.log(3333333 + ' : ' + document.cookie.length);
-    // }, 3000);
-    // setTimeout(function () {
-    //     document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
-    //     console.log(4444444 + ' : ' + document.cookie.length);
-    // }, 4000);
+    setTimeout(function () {
+        document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(111111 + ' : ' + document.cookie.length);
+    }, 1000);
+    setTimeout(function () {
+        document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(222222 + ' : ' + document.cookie.length);
+    }, 2000);
+    setTimeout(function () {
+        document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(3333333 + ' : ' + document.cookie.length);
+    }, 3000);
+    setTimeout(function () {
+        document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(4444444 + ' : ' + document.cookie.length);
+    }, 4000);
 
 
     var origin = document.querySelector('#origin');
