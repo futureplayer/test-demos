@@ -5607,9 +5607,9 @@ define('utils/customStorage', [
      */
     CookieStorage.prototype.delExceedCookie = function () {
         // don't execute in origin page
-        if (this._notIframed()) {
-            return;
-        }
+        // if (this._notIframed()) {
+        //     return;
+        // }
         var domain = window.location.hostname;
         var cks = document.cookie;
         var MINSIZE = 3 * 1024;
