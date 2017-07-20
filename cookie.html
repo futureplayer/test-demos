@@ -14,11 +14,8 @@
     for (var i = 0; i < 3 * 1024; i++) {
         str += 'a';
     };
-    var exp = new Date();
-    exp.setTime(exp.getTime() - 1000);
     document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
     document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
-
     document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
     document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
 
