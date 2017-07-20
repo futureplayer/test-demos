@@ -53,8 +53,8 @@
         console.log(666666666);
         origin.innerText = document.cookie.length / 1024 + 'k';
         var CustomStorage = require('util').customStorage;
-        // var storage = new CustomStorage(2);
-        // storage.delExceedCookie();
+        var storage = new CustomStorage(2);
+        storage.delExceedCookie();
     }, 4000);
 
     setTimeout(function() {
