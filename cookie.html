@@ -22,7 +22,9 @@
     var origin = document.querySelector('#origin');
     var current = document.querySelector('#current');
     var cookie = document.querySelector('#cookie');
-    console.log(document.cookie.length / 1024);
+    setTimeout(function () {
+        console.log(document.cookie.length / 1024);
+    }, 2000);
 
     setTimeout(function () {
         origin.innerText = document.cookie.length / 1024 + 'k';
