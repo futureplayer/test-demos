@@ -12,29 +12,33 @@
     <p>剩余cookie：<span id="cookie"></span></p>
     <script src="./mip-cookie.js"></script>
     <script type="text/javascript">
-    var str = 'a';
-    for (var i = 0; i < 3 * 1024; i++) {
-        str += 'a';
+
+    for (var i = 0; i < 30; i++) {
+        var str = 'a';
+        for (var i = 0; i < 205; i++) {
+            str += 'a';
+        };
+
+        document.cookie = "name" + i + "=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(i);
     };
-    setTimeout(function () {
-        document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(111111 + ' : ' + document.cookie.length);
-    }, 1000);
-    setTimeout(function () {
-        document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(222222 + ' : ' + document.cookie.length);
-    }, 2000);
-    setTimeout(function () {
-        document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(3333333 + ' : ' + document.cookie.length);
-    }, 3000);
-    setTimeout(function () {
-        document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(4444444 + ' : ' + document.cookie.length);
-    }, 4000);
 
-
-    document.cookie="name1=" + str + ';path=/;domain=' + window.location.hostname + ';'
+    // setTimeout(function () {
+    //     document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(111111 + ' : ' + document.cookie.length);
+    // }, 1000);
+    // setTimeout(function () {
+    //     document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(222222 + ' : ' + document.cookie.length);
+    // }, 2000);
+    // setTimeout(function () {
+    //     document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(3333333 + ' : ' + document.cookie.length);
+    // }, 3000);
+    // setTimeout(function () {
+    //     document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(4444444 + ' : ' + document.cookie.length);
+    // }, 4000);
 
 
     var origin = document.querySelector('#origin');
@@ -43,7 +47,7 @@
     setTimeout(function () {
         console.log(55555555);
         console.log(document.cookie.length / 1024);
-    }, 6000);
+    }, 3000);
 
     setTimeout(function () {
         console.log(666666666);
@@ -51,13 +55,13 @@
         var CustomStorage = require('util').customStorage;
         // var storage = new CustomStorage(2);
         // storage.delExceedCookie();
-    }, 7000);
+    }, 4000);
 
     setTimeout(function() {
         console.log(7777777777);
         current.innerText = document.cookie.length / 1024 + 'k';
         cookie.innerText = document.cookie;
-    }, 8000);
+    }, 5000);
     </script>
 </body>
 
