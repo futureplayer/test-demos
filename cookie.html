@@ -19,7 +19,7 @@
             str += 'a';
         };
         document.cookie = "name" + i + "=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(i);
+        console.log(document.cookie.length / 1024);
     };
 
     var origin = document.querySelector('#origin');
