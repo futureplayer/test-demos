@@ -17,20 +17,20 @@
         str += 'a';
     };
     setTimeout(function () {
-        console.log(111111 + ' : ' + document.cookie.length);
         document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(111111 + ' : ' + document.cookie.length);
     }, 1000);
     setTimeout(function () {
-        console.log(222222 + ' : ' + document.cookie.length);
         document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(222222 + ' : ' + document.cookie.length);
     }, 2000);
     setTimeout(function () {
-        console.log(3333333 + ' : ' + document.cookie.length);
         document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(3333333 + ' : ' + document.cookie.length);
     }, 3000);
     setTimeout(function () {
-        console.log(4444444 + ' : ' + document.cookie.length);
         document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(4444444 + ' : ' + document.cookie.length);
     }, 4000);
 
     var origin = document.querySelector('#origin');
