@@ -23,6 +23,10 @@
     //     console.log(i);
     // };
 
+    var str = 'a';
+    for (var i = 0; i < 1024; i++) {
+        str += 'a';
+    }
     setTimeout(function () {
         document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
         console.log(111111 + ' : ' + document.cookie.length);
