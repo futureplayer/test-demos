@@ -13,66 +13,22 @@
     <script src="./mip-cookie.js"></script>
     <script type="text/javascript">
 
-    // for (var i = 0; i < 30; i++) {
-    //     var str = 'a';
-    //     for (var j = 0; j < 205; j++) {
-    //         str += 'a';
-    //     };
+    for (var i = 0; i < 40; i++) {
+        var str = 'a';
+        for (var j = 0; j < 205; j++) {
+            str += 'a';
+        };
+        document.cookie = "name" + i + "=" + str + ';path=/;domain=' + window.location.hostname;
+        console.log(i);
+    };
 
-    //     document.cookie = "name" + i + "=" + str + ';path=/;domain=' + window.location.hostname;
-    //     console.log(i);
-    // };
-
-    // var origin = document.querySelector('#origin');
-    // var current = document.querySelector('#current');
-    // var cookie = document.querySelector('#cookie');
-    // setTimeout(function () {
-    //     console.log(55555555);
-    //     console.log(document.cookie.length / 1024);
-    // }, 3000);
-
-    // setTimeout(function () {
-    //     console.log(666666666);
-    //     origin.innerText = document.cookie.length / 1024 + 'k';
-    //     var CustomStorage = require('util').customStorage;
-    //     var storage = new CustomStorage(2);
-    //     storage.delExceedCookie();
-    // }, 4000);
-
-    // setTimeout(function() {
-    //     console.log(7777777777);
-    //     current.innerText = document.cookie.length / 1024 + 'k';
-    //     cookie.innerText = document.cookie;
-    // }, 5000);
-
-
-    var str = 'a';
-    for (var i = 0; i < 3 * 1024; i++) {
-        str += 'a';
-    }
-    setTimeout(function () {
-        document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(111111 + ' : ' + document.cookie.length);
-    }, 1000);
-    setTimeout(function () {
-        document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(222222 + ' : ' + document.cookie.length);
-    }, 2000);
-    setTimeout(function () {
-        document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(3333333 + ' : ' + document.cookie.length);
-    }, 3000);
-    setTimeout(function () {
-        document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
-        console.log(4444444 + ' : ' + document.cookie.length);
-    }, 4000);
     var origin = document.querySelector('#origin');
     var current = document.querySelector('#current');
     var cookie = document.querySelector('#cookie');
     setTimeout(function () {
         console.log(55555555);
         console.log(document.cookie.length / 1024);
-    }, 5000);
+    }, 3000);
 
     setTimeout(function () {
         console.log(666666666);
@@ -80,13 +36,56 @@
         var CustomStorage = require('util').customStorage;
         var storage = new CustomStorage(2);
         storage.delExceedCookie();
-    }, 6000);
+    }, 4000);
 
     setTimeout(function() {
         console.log(7777777777);
         current.innerText = document.cookie.length / 1024 + 'k';
         cookie.innerText = document.cookie;
-    }, 7000);
+    }, 5000);
+
+
+    // var str = 'a';
+    // for (var i = 0; i < 3 * 1024; i++) {
+    //     str += 'a';
+    // }
+    // setTimeout(function () {
+    //     document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(111111 + ' : ' + document.cookie.length);
+    // }, 1000);
+    // setTimeout(function () {
+    //     document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(222222 + ' : ' + document.cookie.length);
+    // }, 2000);
+    // setTimeout(function () {
+    //     document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(3333333 + ' : ' + document.cookie.length);
+    // }, 3000);
+    // setTimeout(function () {
+    //     document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
+    //     console.log(4444444 + ' : ' + document.cookie.length);
+    // }, 4000);
+    // var origin = document.querySelector('#origin');
+    // var current = document.querySelector('#current');
+    // var cookie = document.querySelector('#cookie');
+    // setTimeout(function () {
+    //     console.log(55555555);
+    //     console.log(document.cookie.length / 1024);
+    // }, 5000);
+
+    // setTimeout(function () {
+    //     console.log(666666666);
+    //     origin.innerText = document.cookie.length / 1024 + 'k';
+    //     var CustomStorage = require('util').customStorage;
+    //     var storage = new CustomStorage(2);
+    //     storage.delExceedCookie();
+    // }, 6000);
+
+    // setTimeout(function() {
+    //     console.log(7777777777);
+    //     current.innerText = document.cookie.length / 1024 + 'k';
+    //     cookie.innerText = document.cookie;
+    // }, 7000);
     </script>
 </body>
 
