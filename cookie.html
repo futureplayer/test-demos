@@ -47,12 +47,13 @@
         var CustomStorage = require('util').customStorage;
         var storage = new CustomStorage(2);
         storage.delExceedCookie();
-        setTimeout(function() {
-            console.log(7777777777);
-            current.innerText = document.cookie.length / 1024 + 'k';
-            cookie.innerText = document.cookie;
-        }, 8000);
     }, 7000);
+
+    setTimeout(function() {
+        console.log(7777777777);
+        current.innerText = document.cookie.length / 1024 + 'k';
+        cookie.innerText = document.cookie;
+    }, 8000);
     </script>
 </body>
 
