@@ -13,16 +13,16 @@
     <script src="./mip-cookie.js"></script>
     <script type="text/javascript">
 
-    for (var i = 0; i < 8; i++) {
-        var str = 'a';
-        for (var j = 0; j < 500; j++) {
-            str += 'a';
-        };
-        document.cookie = "name" + i + "=" + str + ';path=/;domain=' + window.location.hostname.split('.').slice(-2).join('.');
-        console.log(document.cookie.length / 1024);
-    };
+    // for (var i = 0; i < 8; i++) {
+    //     var str = 'a';
+    //     for (var j = 0; j < 500; j++) {
+    //         str += 'a';
+    //     };
+    //     document.cookie = "name" + i + "=" + str + ';path=/;domain=' + window.location.hostname.split('.').slice(-2).join('.');
+    //     console.log(document.cookie.length / 1024);
+    // };
 
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 15; i++) {
         var str = 'a';
         for (var j = 0; j < 500; j++) {
             str += 'a';
