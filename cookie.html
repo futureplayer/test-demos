@@ -14,11 +14,13 @@
     for (var i = 0; i < 3 * 1024; i++) {
         str += 'a';
     };
-    document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
-    document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
+    var exp = new Date();
+    exp.setMilliseconds(exp.getMilliseconds() + 1 * 864e+5);
+    document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toUTCString();
+    document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toUTCString();
 
-    document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
-    document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
+    document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toUTCString();
+    document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toUTCString();
 
     var origin = document.querySelector('#origin');
     var current = document.querySelector('#current');
