@@ -19,20 +19,20 @@
     }, 1000);
     setTimeout(function () {
         document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
-    }, 1000);
+    }, 2000);
     setTimeout(function () {
         document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
-    }, 1000);
+    }, 3000);
     setTimeout(function () {
         document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
-    }, 1000);
+    }, 4000);
 
     var origin = document.querySelector('#origin');
     var current = document.querySelector('#current');
     var cookie = document.querySelector('#cookie');
     setTimeout(function () {
         console.log(document.cookie.length / 1024);
-    }, 1000);
+    }, 5000);
 
     setTimeout(function () {
         origin.innerText = document.cookie.length / 1024 + 'k';
@@ -42,8 +42,8 @@
         setTimeout(function() {
             current.innerText = document.cookie.length / 1024 + 'k';
             cookie.innerText = document.cookie;
-        }, 1000);
-    }, 2000);
+        }, 7000);
+    }, 6000);
     </script>
 </body>
 
