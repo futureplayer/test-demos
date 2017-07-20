@@ -5624,7 +5624,7 @@ define('utils/customStorage', [
                 var exp = new Date();
                 var key = item[0].trim();
                 var value = item[1].trim();
-                exp.setMilliseconds(exp.getMilliseconds() - 1 * 86400000);
+                exp.setTime(exp.getTime() - 1000);
                 this._set({
                     key: key,
                     value: value,
@@ -5679,7 +5679,7 @@ define('utils/customStorage', [
             options.key,
             '=',
             options.value,
-            '; expires=' + options.expires.toUTCString(),
+            '; expires=' + options.expires.toGMTString(),
             '; path=/',
             '; domain=' + options.domain
         ].join('');
