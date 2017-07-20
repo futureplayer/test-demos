@@ -9384,10 +9384,9 @@ define('mip', [
             viewer.sendMessage('performance_update', timing);
         });
         // Show page
-        viewer.show();
-        // clear cookie
-        var storage = new CustomStorage(2);
-        storage.delExceedCookie();
+        viewer.show();    // clear cookie
+                          // var storage = new CustomStorage(2);
+                          // storage.delExceedCookie();
     });
     return Mip;
 });
