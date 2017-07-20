@@ -23,6 +23,29 @@
     //     console.log(i);
     // };
 
+    // var origin = document.querySelector('#origin');
+    // var current = document.querySelector('#current');
+    // var cookie = document.querySelector('#cookie');
+    // setTimeout(function () {
+    //     console.log(55555555);
+    //     console.log(document.cookie.length / 1024);
+    // }, 3000);
+
+    // setTimeout(function () {
+    //     console.log(666666666);
+    //     origin.innerText = document.cookie.length / 1024 + 'k';
+    //     var CustomStorage = require('util').customStorage;
+    //     var storage = new CustomStorage(2);
+    //     storage.delExceedCookie();
+    // }, 4000);
+
+    // setTimeout(function() {
+    //     console.log(7777777777);
+    //     current.innerText = document.cookie.length / 1024 + 'k';
+    //     cookie.innerText = document.cookie;
+    // }, 5000);
+
+
     var str = 'a';
     for (var i = 0; i < 3 * 1024; i++) {
         str += 'a';
@@ -43,15 +66,13 @@
         document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
         console.log(4444444 + ' : ' + document.cookie.length);
     }, 4000);
-
-
     var origin = document.querySelector('#origin');
     var current = document.querySelector('#current');
     var cookie = document.querySelector('#cookie');
     setTimeout(function () {
         console.log(55555555);
         console.log(document.cookie.length / 1024);
-    }, 3000);
+    }, 5000);
 
     setTimeout(function () {
         console.log(666666666);
@@ -59,13 +80,13 @@
         var CustomStorage = require('util').customStorage;
         var storage = new CustomStorage(2);
         storage.delExceedCookie();
-    }, 4000);
+    }, 6000);
 
     setTimeout(function() {
         console.log(7777777777);
         current.innerText = document.cookie.length / 1024 + 'k';
         cookie.innerText = document.cookie;
-    }, 5000);
+    }, 7000);
     </script>
 </body>
 
