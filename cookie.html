@@ -12,6 +12,8 @@
 </head>
 
 <body>
+	<p id="origin">原cookie大小：</p>
+	<p id="current">现cookie大小：</p>
 	<script src="./mip.js"></script>
 	<script type="text/javascript">
 		var str = 'a';
@@ -24,9 +26,18 @@
 		document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname.split('.').slice(-2).join('.');
 		document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname.split('.').slice(-2).join('.');
 
+		var origin = document.querySelector('#origin');
+		var current = document.querySelector('#current');
+
+		origin.innerText = document.cookie.length;
+
 		var CustomStorage = require('util').customStorage;
 		var storage = new CustomStorage(2);
         storage.delExceedCookie();
+
+        setTimeout(function () {
+        	current.innerText = document.cookie.length;
+        }, 100);
 	</script>
 </body>
 </html>
