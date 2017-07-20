@@ -23,14 +23,16 @@
     var current = document.querySelector('#current');
     var cookie = document.querySelector('#cookie');
 
-    origin.innerText = document.cookie.length / 1024 + 'k';
+    setTimeout(function () {
+        origin.innerText = document.cookie.length / 1024 + 'k';
 
-    var CustomStorage = require('util').customStorage;
-    var storage = new CustomStorage(2);
-    storage.delExceedCookie();
-    setTimeout(function() {
-        current.innerText = document.cookie.length / 1024 + 'k';
-        cookie.innerText = document.cookie;
+        var CustomStorage = require('util').customStorage;
+        var storage = new CustomStorage(2);
+        storage.delExceedCookie();
+        setTimeout(function() {
+            current.innerText = document.cookie.length / 1024 + 'k';
+            cookie.innerText = document.cookie;
+        }, 1000);
     }, 2000);
     </script>
 </body>
