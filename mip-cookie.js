@@ -5663,11 +5663,8 @@ define('utils/customStorage', [
     CookieStorage.prototype._get = function (name) {
         var cks = document.cookie;
         var cookies = cks ? cks.split(';') : [];
-        console.log(123123123123);
         for (var i = 0; i < cookies.length; i++) {
             var items = cookies[i].split('=');
-            console.log(document.cookie.split(';'));
-            console.log(items[0] + ' and ' + name);
             if (items[0].trim() === name.trim()) {
                 return items[1];
             }
