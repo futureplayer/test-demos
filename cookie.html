@@ -15,15 +15,19 @@
         str += 'a';
     };
     setTimeout(function () {
+        console.log(111111);
         document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname;
     }, 1000);
     setTimeout(function () {
+        console.log(222222);
         document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname;
     }, 2000);
     setTimeout(function () {
+        console.log(3333333);
         document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname;
     }, 3000);
     setTimeout(function () {
+        console.log(4444444);
         document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname;
     }, 4000);
 
@@ -31,15 +35,18 @@
     var current = document.querySelector('#current');
     var cookie = document.querySelector('#cookie');
     setTimeout(function () {
+        console.log(55555555);
         console.log(document.cookie.length / 1024);
     }, 5000);
 
     setTimeout(function () {
+        console.log(666666666);
         origin.innerText = document.cookie.length / 1024 + 'k';
         var CustomStorage = require('util').customStorage;
         var storage = new CustomStorage(2);
         storage.delExceedCookie();
         setTimeout(function() {
+            console.log(7777777777);
             current.innerText = document.cookie.length / 1024 + 'k';
             cookie.innerText = document.cookie;
         }, 7000);
