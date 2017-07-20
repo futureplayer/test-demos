@@ -5632,6 +5632,7 @@ define('utils/customStorage', [
                     domain: domain
                 });
                 if (this._get(key)) {
+                    alert(1);
                     this._set({
                         key: key,
                         value: value,
@@ -5678,7 +5679,6 @@ define('utils/customStorage', [
         document.cookie = [
             options.key,
             '=',
-            options.value,
             '; expires=' + options.expires.toGMTString(),
             '; path=/',
             '; domain=' + options.domain
