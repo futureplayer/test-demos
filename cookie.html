@@ -25,7 +25,6 @@
 
     setTimeout(function () {
         origin.innerText = document.cookie.length / 1024 + 'k';
-
         var CustomStorage = require('util').customStorage;
         var storage = new CustomStorage(2);
         storage.delExceedCookie();
@@ -33,7 +32,7 @@
             current.innerText = document.cookie.length / 1024 + 'k';
             cookie.innerText = document.cookie;
         }, 1000);
-    }, 2000);
+    }, 5000);
     </script>
 </body>
 
