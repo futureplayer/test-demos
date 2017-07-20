@@ -33,6 +33,10 @@
         console.log(4444444 + ' : ' + document.cookie.length);
     }, 4000);
 
+
+    document.cookie="name1=" + str + ';path=/;domain=' + window.location.hostname + ';'
+
+
     var origin = document.querySelector('#origin');
     var current = document.querySelector('#current');
     var cookie = document.querySelector('#cookie');
