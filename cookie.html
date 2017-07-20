@@ -26,16 +26,16 @@
         console.log(document.cookie.length / 1024);
     }, 2000);
 
-    setTimeout(function () {
-        origin.innerText = document.cookie.length / 1024 + 'k';
-        var CustomStorage = require('util').customStorage;
-        var storage = new CustomStorage(2);
-        storage.delExceedCookie();
-        setTimeout(function() {
-            current.innerText = document.cookie.length / 1024 + 'k';
-            cookie.innerText = document.cookie;
-        }, 1000);
-    }, 5000);
+    // setTimeout(function () {
+    //     origin.innerText = document.cookie.length / 1024 + 'k';
+    //     var CustomStorage = require('util').customStorage;
+    //     var storage = new CustomStorage(2);
+    //     storage.delExceedCookie();
+    //     setTimeout(function() {
+    //         current.innerText = document.cookie.length / 1024 + 'k';
+    //         cookie.innerText = document.cookie;
+    //     }, 1000);
+    // }, 5000);
     </script>
 </body>
 
