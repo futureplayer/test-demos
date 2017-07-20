@@ -5610,7 +5610,6 @@ define('utils/customStorage', [
         // if (this._notIframed()) {
         //     return;
         // }
-        debugger;
         var domain = window.location.hostname;
         var cks = document.cookie;
         var MINSIZE = 3 * 1024;
@@ -5664,8 +5663,7 @@ define('utils/customStorage', [
     CookieStorage.prototype._get = function (name) {
         var cks = document.cookie;
         var cookies = cks ? cks.split(';') : [];
-        alert(cks);
-        alert(cookies);
+        debugger;
         for (var i = 0; i < cookies.length; i++) {
             var items = cookies[i].split('=');
             if (items[0].trim() === name.trim()) {
