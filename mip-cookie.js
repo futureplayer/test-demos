@@ -5632,7 +5632,6 @@ define('utils/customStorage', [
                     domain: domain
                 });
                 if (this._get(key)) {
-                    alert(1);
                     this._set({
                         key: key,
                         value: value,
