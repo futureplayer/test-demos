@@ -5663,9 +5663,9 @@ define('utils/customStorage', [
     CookieStorage.prototype._get = function (name) {
         var cks = document.cookie;
         var cookies = cks ? cks.split(';') : [];
-        debugger;
         for (var i = 0; i < cookies.length; i++) {
             var items = cookies[i].split('=');
+            console.log(items[0] + ' and ' + name);
             if (items[0].trim() === name.trim()) {
                 return items[1];
             }
