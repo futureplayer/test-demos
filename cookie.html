@@ -15,12 +15,12 @@
         str += 'a';
     };
     var exp = new Date();
-    exp.setMilliseconds(exp.getMilliseconds() + 1 * 864e+5);
-    document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toUTCString();
-    document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toUTCString();
+    exp.setTime(exp.getTime() - 1000);
+    document.cookie = "name1=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toGMTString();
+    document.cookie = "name2=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toGMTString();
 
-    document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toUTCString();
-    document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toUTCString();
+    document.cookie = "name3=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toGMTString();
+    document.cookie = "name4=" + str + ';path=/;domain=' + window.location.hostname + ';expires=' + exp.toGMTString();
 
     var origin = document.querySelector('#origin');
     var current = document.querySelector('#current');
