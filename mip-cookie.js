@@ -5624,7 +5624,7 @@ define('utils/customStorage', [
                 var exp = new Date();
                 var key = item[0].trim();
                 var value = item[1].trim();
-                exp.setTime(exp.getTime() - 1000);
+                exp.setMilliseconds(exp.getMilliseconds() - 1 * 86400000);
                 this._set({
                     key: key,
                     value: value,
@@ -7513,7 +7513,7 @@ define('viewer', [
          * @public
          */
         isIframed: win !== top,
-        /**
+        /** 
          * Patch for iframe
          */
         patchForIframe: function () {
