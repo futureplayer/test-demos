@@ -3220,6 +3220,165 @@ define('naboo', [], function () {
 });
 
 // ======================
+// src/dom/dom.js
+// ======================
+
+
+/**
+ *
+ * @file fixed element
+ * @author qijian@baidu.com
+ * @modify lilangbo@baidu.com 2017-06-06 upgrade to support asycn
+ */
+define('dom/dom', ['require'], function (require) {
+    'use strict';
+    /**
+     * Save documentElement.
+     * @inner
+     * @type {Object}
+     */
+    var docElem = document.documentElement;
+    /**
+     * Get the supported matches method.
+     * @inner
+     * @type {Function}
+     */
+    var nativeMatches = docElem.matches || docElem.webkitMatchesSelector || docElem.mozMatchesSelector || docElem.oMatchesSelector || docElem.msMatchesSelector || docElem.matchesSelector;
+    /**
+     * Support for matches. Check whether a element matches a selector.
+     *
+     * @param {HTMLElement} element target element
+     * @param {string} selector element selector
+     * @return {boolean}
+     */
+    function matches(element, selector) {
+        if (!element || element.nodeType !== 1) {
+            return false;
+        }
+        return nativeMatches.call(element, selector);
+    }
+    /**
+     * Support for closest. Find the closest parent node that matches the selector.
+     *
+     * @param {HTMLElement} element element
+     * @param {string} selector selector
+     * @return {?HTMLElement}
+     */
+    var closest = docElem.closest ? function (element, selector) {
+        return element.closest(selector);
+    } : function (element, selector) {
+        while (element) {
+            if (matches(element, selector)) {
+                return element;
+            }
+            element = element.parentNode;
+        }
+        return null;
+    };
+    /**
+     * Support for contains.
+     *
+     * @param {HTMLElement} element parent node
+     * @param {HTMLElement} child child node
+     * @return {boolean}
+     */
+    var contains = docElem.contains ? function (element, child) {
+        return element && element.contains(child);
+    } : function (element, child) {
+        while (child) {
+            if (element === child) {
+                return true;
+            }
+            child = child.parentElement;
+        }
+        return false;
+    };
+    /**
+     * Find the nearest element that matches the selector from current element to target element.
+     *
+     * @param {HTMLElement} element element
+     * @param {string} selector element selector
+     * @param {HTMLElement} target target element
+     * @return {?HTMLElement}
+     */
+    function closestTo(element, selector, target) {
+        var closestElement = closest(element, selector);
+        return contains(target, closestElement) ? closestElement : null;
+    }
+    /**
+     * Temp element for creating element by string.
+     * @inner
+     * @type {HTMLElement}
+     */
+    var createTmpElement = document.createElement('div');
+    /**
+     * Create a element by string
+     *
+     * @param {string} str Html string
+     * @return {HTMLElement}
+     */
+    function create(str) {
+        createTmpElement.innerHTML = str;
+        if (!createTmpElement.children.length) {
+            return null;
+        }
+        var children = Array.prototype.slice.call(createTmpElement.children);
+        createTmpElement.innerHTML = '';
+        return children.length > 1 ? children : children[0];
+    }
+    /**
+     * Waits until the Document is ready. Then the
+     * callback is executed.
+     *
+     * @param {Function} cb callback
+     */
+    function waitDocumentReady(cb) {
+        if (!!document.body) {
+            cb();
+            return;
+        }
+        var interval = window.setInterval(function () {
+            if (!!document.body) {
+                window.clearInterval(interval);
+                cb();
+            }
+        }, 5);
+    }
+    /**
+     * Insert dom list to a node
+     *
+     * @param  {HTMLElement} parent the node will be inserted
+     * @param {Array} children node list which will insert into parent
+     */
+    function insert(parent, children) {
+        if (!parent || !children) {
+            return;
+        }
+        var nodes = Array.prototype.slice.call(children);
+        if (nodes.length === 0) {
+            nodes.push(children);
+        }
+        for (var i = 0; i < nodes.length; i++) {
+            if (this.contains(nodes[i], parent)) {
+                continue;
+            }
+            if (nodes[i] !== parent && parent.appendChild) {
+                parent.appendChild(nodes[i]);
+            }
+        }
+    }
+    return {
+        closest: closest,
+        closestTo: closestTo,
+        matches: matches,
+        contains: contains,
+        create: create,
+        insert: insert,
+        waitDocumentReady: waitDocumentReady
+    };
+});
+
+// ======================
 // deps/fetch-jsonp.js
 // ======================
 
@@ -3470,6 +3629,15 @@ define('utils/fn', ['require'], function (require) {
     function hasTouch() {
         return 'ontouchstart' in window || window.navigator.maxTouchPoints !== undefined && window.navigator.maxTouchPoints > 0 || window.DocumentTouch !== undefined;
     }
+    /**
+     * Whether pageUrl is mip cache url.
+     *
+     * @param {string} pageUrl - current page url.
+     * @return {Boolean} isCacheUrl.
+     */
+    function isCacheUrl(pageUrl) {
+        return /mipcache.bdstatic.com/.test(pageUrl) || /^(\/\/|http:\/\/|https:\/\/)[A-Za-z0-9]{1,}-.*.mipcdn.com\/c\//.test(pageUrl);
+    }
     return {
         throttle: throttle,
         values: values,
@@ -3478,114 +3646,8 @@ define('utils/fn', ['require'], function (require) {
         isPlainObject: isPlainObject,
         isString: isString,
         del: del,
-        hasTouch: hasTouch
-    };
-});
-
-// ======================
-// src/dom/dom.js
-// ======================
-
-
-define('dom/dom', ['require'], function (require) {
-    'use strict';
-    /**
-     * Save documentElement.
-     * @inner
-     * @type {Object}
-     */
-    var docElem = document.documentElement;
-    /**
-     * Get the supported matches method.
-     * @inner
-     * @type {Function}
-     */
-    var nativeMatches = docElem.matches || docElem.webkitMatchesSelector || docElem.mozMatchesSelector || docElem.oMatchesSelector || docElem.msMatchesSelector || docElem.matchesSelector;
-    /**
-     * Support for matches. Check whether a element matches a selector.
-     * @param {HTMLElement} element
-     * @param {string} selector
-     * @return {boolean}
-     */
-    function matches(element, selector) {
-        if (!element || element.nodeType != 1) {
-            return false;
-        }
-        return nativeMatches.call(element, selector);
-    }
-    /**
-     * Support for closest. Find the closest parent node that matches the selector.
-     * @param {HTMLElement} element
-     * @param {string} selector
-     * @return {?HTMLElement}
-     */
-    var closest = docElem.closest ? function (element, selector) {
-        return element.closest(selector);
-    } : function (element, selector) {
-        while (element) {
-            if (matches(element, selector)) {
-                return element;
-            }
-            element = element.parentNode;
-        }
-        ;
-        return null;
-    };
-    /**
-     * Support for contains.
-     * @param {HTMLElement} element
-     * @param {HTMLElement} child
-     * @return {boolean}
-     */
-    var contains = docElem.contains ? function (element, child) {
-        return element && element.contains(child);
-    } : function (element, child) {
-        while (child) {
-            if (element === child) {
-                return true;
-            }
-            child = child.parentElement;
-        }
-        ;
-        return false;
-    };
-    /**
-     * Find the nearest element that matches the selector from current element to target element.
-     * @param {HTMLElement} element
-     * @param {string} selector
-     * @param {HTMLElement} target
-     * @return {?HTMLElement}
-     */
-    function closestTo(element, selector, target) {
-        var closestElement = closest(element, selector);
-        return contains(target, closestElement) ? closestElement : null;
-    }
-    /**
-     * Temp element for creating element by string.
-     * @inner
-     * @type {HTMLElement}
-     */
-    var createTmpElement = document.createElement('div');
-    /**
-     * Create a element by string
-     * @param {string} str Html string
-     * @return {HTMLElement}
-     */
-    function create(str) {
-        createTmpElement.innerHTML = str;
-        if (!createTmpElement.children.length) {
-            return null;
-        }
-        var children = Array.prototype.slice.call(createTmpElement.children);
-        createTmpElement.innerHTML = '';
-        return children.length > 1 ? children : children[0];
-    }
-    return {
-        closest: closest,
-        closestTo: closestTo,
-        matches: matches,
-        contains: contains,
-        create: create
+        hasTouch: hasTouch,
+        isCacheUrl: isCacheUrl
     };
 });
 
@@ -5156,13 +5218,6 @@ define('utils/customStorage', [
      */
     var href = window.location.href;
     /**
-     * Whether page in cache
-     * @const
-     * @inner
-     * @type {boolean}
-     */
-    var isCachePage = false;
-    /**
      * Domain of website
      * @const
      * @inner
@@ -5184,9 +5239,6 @@ define('utils/customStorage', [
      * @param {Object} storage it's local storage
      */
     function updateTime(storage) {
-        if (!storage) {
-            return;
-        }
         storage.u = new Date().getTime();
     }
     /**
@@ -5199,8 +5251,6 @@ define('utils/customStorage', [
         try {
             str = JSON.parse(str);
         } catch (e) {
-            str = JSON.stringify(str);
-            str = JSON.parse(str);
         }
         return str;
     }
@@ -5247,7 +5297,6 @@ define('utils/customStorage', [
             break;
         case storageType.LOCALSTORAGE:
             this.storage = new LocalStorage();
-            this.storage._isCachePage(href);
             break;
         case storageType.COOKIESTORAGE:
             this.storage = new CookieStorage();
@@ -5267,16 +5316,22 @@ define('utils/customStorage', [
      *
      * @return {boolean} Whether support ls
      */
+    LocalStorage.prototype._isCachePage = function () {
+        return fn.isCacheUrl(href);
+    };
+    /**
+     * Whether support Local Storage
+     *
+     * @return {boolean} Whether support ls
+     */
     LocalStorage.prototype._supportLs = function () {
         var support = false;
-        if (window.localStorage && window.localStorage.setItem) {
-            try {
-                window.localStorage.setItem('lsExisted', '1');
-                window.localStorage.removeItem('lsExisted');
-                support = true;
-            } catch (e) {
-                support = false;
-            }
+        try {
+            window.localStorage.setItem('lsExisted', '1');
+            window.localStorage.removeItem('lsExisted');
+            support = true;
+        } catch (e) {
+            support = false;
         }
         return support;
     };
@@ -5315,7 +5370,7 @@ define('utils/customStorage', [
             return;
         }
         callback = typeof expire === 'function' ? expire : callback;
-        if (isCachePage) {
+        if (this._isCachePage()) {
             var ls = this._getLocalStorage();
             ls[name] = value;
             expire = parseInt(expire, 10);
@@ -5349,9 +5404,9 @@ define('utils/customStorage', [
             try {
                 localStorage.setItem(key, value);
             } catch (e) {
-                if (this._isExceed(e) && isCachePage) {
+                if (this._isExceed(e) && this._isCachePage()) {
                     this._exceedHandler(key, value, expire);
-                } else if (this._isExceed(e) && !isCachePage) {
+                } else if (this._isExceed(e) && !this._isCachePage()) {
                     callback && callback(getError(eCode.lsExceed, mess));
                     throw mess;
                 }
@@ -5381,7 +5436,7 @@ define('utils/customStorage', [
             return;
         }
         var result;
-        if (isCachePage) {
+        if (this._isCachePage()) {
             var ls = this._getLocalStorage();
             if (ls && ls[name]) {
                 result = ls[name];
@@ -5400,7 +5455,7 @@ define('utils/customStorage', [
         if (!fn.isString(name)) {
             return;
         }
-        if (isCachePage) {
+        if (this._isCachePage()) {
             var ls = this._getLocalStorage();
             if (ls && ls[name]) {
                 fn.del(ls, name);
@@ -5415,7 +5470,7 @@ define('utils/customStorage', [
      *
      */
     LocalStorage.prototype.clear = function () {
-        if (isCachePage) {
+        if (this._isCachePage()) {
             this._rmLocalStorage();
         } else {
             this._supportLs() ? localStorage.clear() : lsCache = {};
@@ -5428,7 +5483,7 @@ define('utils/customStorage', [
      */
     LocalStorage.prototype.rmExpires = function () {
         var hasExpires = false;
-        if (isCachePage) {
+        if (this._isCachePage()) {
             var ls = this._supportLs() ? localStorage : lsCache;
             for (var k in ls) {
                 if (ls[k]) {
@@ -5500,14 +5555,6 @@ define('utils/customStorage', [
         this.set(name, value, expire);
     };
     /**
-     * If page is cache page
-     *
-     * @param {string} href page href
-     */
-    LocalStorage.prototype._isCachePage = function (href) {
-        isCachePage = /mipcache.bdstatic.com/.test(href) || /c.mipcdn.com/.test(href);
-    };
-    /**
      * Publisher manage storage, via request
      *
      * @class
@@ -5537,7 +5584,7 @@ define('utils/customStorage', [
         fetch(opt.url, myInit).then(function (res) {
             if (res.ok) {
                 res.text().then(function (data) {
-                    opt.success && opt.success(JSON.parse(data));
+                    opt.success && opt.success(parseJson(data));
                 });
             } else {
                 opt.error && opt.error(res);
@@ -5559,25 +5606,82 @@ define('utils/customStorage', [
      * @param {Object} opt request params
      */
     CookieStorage.prototype.delExceedCookie = function () {
+        // don't execute in origin page
+        if (this._notIframed()) {
+            return;
+        }
+        var domain = window.location.hostname;
         var cks = document.cookie;
-        var cksLen = cks.length;
         var MINSIZE = 3 * 1024;
         var MAXSIZE = 5 * 1024;
-        if (cksLen >= MAXSIZE) {
-            var items = cks.split(';');
-            for (var i = 0; i < items.length; i++) {
-                var item = items[i].split('=');
-                if (item && item.length > 1) {
-                    cksLen -= items[i].length;
-                    var exp = new Date();
-                    exp.setTime(exp.getTime() - 1000);
-                    document.cookie = item[0] + '=' + item[1] + ';expires=' + exp.toGMTString();
-                }
-                if (cksLen <= MINSIZE) {
-                    break;
+        if (document.cookie.length < MAXSIZE) {
+            return;
+        }
+        var items = cks.split(';');
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i].split('=');
+            if (item && item.length > 1) {
+                var exp = new Date();
+                var key = item[0].trim();
+                var value = item[1].trim();
+                exp.setMilliseconds(exp.getMilliseconds() - 1 * 86400000);
+                this._set({
+                    key: key,
+                    value: value,
+                    expires: exp,
+                    domain: domain
+                });
+                if (this._get(key)) {
+                    this._set({
+                        key: key,
+                        value: value,
+                        expires: exp,
+                        domain: domain.split('.').slice(-2).join('.')
+                    });
                 }
             }
+            if (document.cookie.length <= MINSIZE) {
+                break;
+            }
         }
+    };
+    /**
+     * Whether iframed or not
+     *
+     * @return {string} Whether iframed
+     */
+    CookieStorage.prototype._notIframed = function (name) {
+        return window === top;
+    };
+    /**
+     * Get cookie
+     *
+     * @param {string} name cookie name
+     * @return {string} cookie value
+     */
+    CookieStorage.prototype._get = function (name) {
+        var cks = document.cookie;
+        var cookies = cks ? cks.split(';') : [];
+        for (var i = 0; i < cookies.length; i++) {
+            var items = cookies[i].split('=');
+            if (items[0].trim() === name.trim()) {
+                return items[1];
+            }
+        }
+    };
+    /**
+     * Set cookie
+     *
+     * @param {Object} options cookie option
+     */
+    CookieStorage.prototype._set = function (options) {
+        document.cookie = [
+            options.key,
+            '=',
+            '; expires=' + options.expires.toGMTString(),
+            '; path=/',
+            '; domain=' + options.domain
+        ].join('');
     };
     return customStorage;
 });
@@ -5587,6 +5691,12 @@ define('utils/customStorage', [
 // ======================
 
 
+/**
+ *
+ * @file export api
+ * @author xx
+ * @modify wupeng10@baidu.com 2017-06-15 add parseCacheUrl api
+ */
 define('util', [
     'require',
     './utils/fn',
@@ -5601,20 +5711,20 @@ define('util', [
     'naboo'
 ], function (require) {
     'use strict';
-    // Page url
-    var pageUrl = location.href;
+    var fn = require('./utils/fn');
     /**
      * Exchange a url to cache url.
+     *
      * @param {string} url Source url.
      * @param {string} type The url type.
      * @return {string} Cache url.
      */
     function makeCacheUrl(url, type) {
-        if (pageUrl.indexOf('mipcache.bdstatic.com') < 0 || url && url.length < 8 || !(url.indexOf('http') == 0 || url.indexOf('//') == 0)) {
+        if (!fn.isCacheUrl(location.href) || url && url.length < 8 || !(url.indexOf('http') === 0 || url.indexOf('//') === 0)) {
             return url;
         }
         var prefix = type === 'img' ? '/i/' : '/c/';
-        if (url.indexOf('//') == 0 || url.indexOf('https') == 0) {
+        if (url.indexOf('//') === 0 || url.indexOf('https') === 0) {
             prefix += 's/';
         }
         var urlParas = url.split('//');
@@ -5631,17 +5741,18 @@ define('util', [
      *  reg[3] url domain extname
      *  reg[4] /s flag
      *  reg[5] origin url
+     *
      * @param {string} url Source url.
      * @return {string} origin url.
      */
     function parseCacheUrl(url) {
         if (!url) {
-            return;
+            return url;
         }
         if (!(url.indexOf('http') === 0 || url.indexOf('/') === 0)) {
             return url;
         }
-        var reg = new RegExp('^(http[s]:){0,1}(//[a-zA-Z0-9][-a-zA-Z0-9]{0,62}' + '(.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+.?){0,1}/[ic](/s){0,1}/(.*)$', 'g');
+        var reg = new RegExp('^(http[s]:)?(//([^/]+))?/[ic](/s)?/(.*)$', 'g');
         var result = reg.exec(url);
         if (!result) {
             return url;
@@ -5657,7 +5768,7 @@ define('util', [
     return {
         parseCacheUrl: parseCacheUrl,
         makeCacheUrl: makeCacheUrl,
-        fn: require('./utils/fn'),
+        fn: fn,
         dom: require('./dom/dom'),
         event: require('./dom/event'),
         rect: require('./dom/rect'),
@@ -6252,6 +6363,52 @@ define('utils/event-action', [
 });
 
 // ======================
+// src/dom/css-loader.js
+// ======================
+
+
+define('dom/css-loader', [], function () {
+    /**
+     * Creates the properly configured style element.
+     * @param {Document} doc
+     * @param {Element|ShadowRoot} cssRoot
+     * @param {string} cssText
+     * @param {boolean} isRuntimeCss
+     * @param {string} name
+     * @return {Element}
+    */
+    function insertStyleElement(doc, cssRoot, cssText, name, isRuntimeCss) {
+        var style = doc.createElement('style');
+        style.textContent = cssText;
+        var afterElement = null;
+        if (isRuntimeCss) {
+            style.setAttribute('mip-main', '');
+        } else {
+            style.setAttribute('mip-extension', name || '');
+            afterElement = cssRoot.querySelector('style[mip-main]');
+        }
+        insertAfterOrAtStart(cssRoot, style, afterElement);
+        return style;
+    }
+    /**
+     * Insert the styleElement in the root element after a element or at the start.
+     */
+    function insertAfterOrAtStart(styleRoot, styleElement, afterElement) {
+        if (afterElement) {
+            if (afterElement.nextSibling) {
+                styleRoot.insertBefore(styleElement, afterElement.nextSibling);
+            } else {
+                styleRoot.appendChild(styleElement);
+            }
+        } else {
+            // Add to the styleRoot element as first child
+            styleRoot.insertBefore(styleElement, styleRoot.firstChild);
+        }
+    }
+    return { insertStyleElement: insertStyleElement };
+});
+
+// ======================
 // src/sleepWakeModule.js
 // ======================
 
@@ -6383,52 +6540,6 @@ define('sleepWakeModule', ['require'], function (require) {
         }
     };
     return new SleepWakeModule();
-});
-
-// ======================
-// src/dom/css-loader.js
-// ======================
-
-
-define('dom/css-loader', [], function () {
-    /**
-     * Creates the properly configured style element.
-     * @param {Document} doc
-     * @param {Element|ShadowRoot} cssRoot
-     * @param {string} cssText
-     * @param {boolean} isRuntimeCss
-     * @param {string} name
-     * @return {Element}
-    */
-    function insertStyleElement(doc, cssRoot, cssText, name, isRuntimeCss) {
-        var style = doc.createElement('style');
-        style.textContent = cssText;
-        var afterElement = null;
-        if (isRuntimeCss) {
-            style.setAttribute('mip-main', '');
-        } else {
-            style.setAttribute('mip-extension', name || '');
-            afterElement = cssRoot.querySelector('style[mip-main]');
-        }
-        insertAfterOrAtStart(cssRoot, style, afterElement);
-        return style;
-    }
-    /**
-     * Insert the styleElement in the root element after a element or at the start.
-     */
-    function insertAfterOrAtStart(styleRoot, styleElement, afterElement) {
-        if (afterElement) {
-            if (afterElement.nextSibling) {
-                styleRoot.insertBefore(styleElement, afterElement.nextSibling);
-            } else {
-                styleRoot.appendChild(styleElement);
-            }
-        } else {
-            // Add to the styleRoot element as first child
-            styleRoot.insertBefore(styleElement, styleRoot.firstChild);
-        }
-    }
-    return { insertStyleElement: insertStyleElement };
 });
 
 // ======================
@@ -7382,6 +7493,8 @@ define('viewer', [
              */
             this._gesture = new Gesture(document, { preventX: false });
             this.setupEventAction();
+            // handle preregistered  extensions
+            this.handlePreregisteredExtensions();
             if (this.isIframed) {
                 this.patchForIframe();
                 // proxy links
@@ -7472,6 +7585,26 @@ define('viewer', [
                 document.addEventListener('click', function (event) {
                     eventAction.execute('tap', event.target, event);
                 }, false);
+            }
+        },
+        /**
+         * Setup event-action of viewer. To handle `on="tap:xxx"`.
+         */
+        handlePreregisteredExtensions: function () {
+            window.MIP = window.MIP || {};
+            window.MIP.push = function (extensions) {
+                if (extensions && typeof extensions.func == 'function') {
+                    extensions.func();
+                }
+            };
+            var preregisteredExtensions = window.MIP.extensions;
+            if (preregisteredExtensions && preregisteredExtensions.length) {
+                for (var i = 0; i < preregisteredExtensions.length; i++) {
+                    var curExtensionObj = preregisteredExtensions[i];
+                    if (curExtensionObj && typeof curExtensionObj.func == 'function') {
+                        curExtensionObj.func();
+                    }
+                }
             }
         },
         /**
@@ -8461,7 +8594,7 @@ define('components/mip-img', [
 
 /**
  * @file mip-pix 统计组件
- * @author baidu-authors<>, liangjiaying<jiaojiaomao220@163.com>
+ * @author baidu-authors, liangjiaying<jiaojiaomao220@163.com>
  */
 define('components/mip-pix', [
     'require',
@@ -8472,21 +8605,23 @@ define('components/mip-pix', [
     var util = require('util');
     /**
      * 替换请求链接中的参数
+     *
      * @param {string} src      用户填写在mip-pix中的src
      * @param {string} paraName key, 如"title"
      * @param {string} paraVal  value, 如当前时间戳
+     * @return {string} url
      */
     function addParas(src, paraName, paraVal) {
-        if (src.indexOf('?' + paraName) > -1 || src.indexOf('&' + paraName) > -1) {
-            var reg = new RegExp(paraName + '=({\\w+})');
-            var placeholder = reg.exec(src) ? reg.exec(src)[1] : '';
-            return src.replace(placeholder, paraVal);
+        var paraNameQ = new RegExp('\\$?{' + paraName + '}', 'g');
+        if (src.search(paraNameQ) > -1) {
+            return src.replace(paraNameQ, paraVal);
         }
         src += src.indexOf('?') > -1 ? '&' : '?';
         return src + paraName + '=' + paraVal;
     }
     /**
      * 从body获取mip-expeirment实验分组
+     *
      * @param  {string} attr 实验名
      * @return {string}      实验分组
      */
@@ -8502,16 +8637,20 @@ define('components/mip-pix', [
         var title = (document.querySelector('title') || {}).innerHTML || '';
         var time = Date.now();
         // 替换通用参数
-        src = addParas(src, 't', time);
-        src = addParas(src, 'title', encodeURIComponent(title));
-        src = addParas(src, 'host', encodeURIComponent(host));
+        src = addParas(src, 'TIME', time);
+        src = addParas(src, 'TITLE', encodeURIComponent(title));
+        src = addParas(src, 'HOST', encodeURIComponent(host));
         // 增加对<mip-experiment>支持，获取实验分组
-        var expReg = /mip-x-((\w|-|\d|_)+)/g;
+        var expReg = /MIP-X-((\w|-|\d|_)+)/g;
         var matchExpArr = src.match(expReg);
-        for (i in matchExpArr) {
+        for (var i in matchExpArr) {
             var matchExp = matchExpArr[i];
             src = addParas(src, matchExp, getBodyAttr(matchExp));
         }
+        // 去除匹配失败的其餘{參數}
+        src = src.replace(/\$?{.+?}/g, '');
+        // 去除其餘 '${', '{', '}' 確保輸出不包含 MIP 定义的语法
+        src = src.replace(/\$?{|}/g, '');
         // 创建请求img
         var image = new Image();
         image.src = src;
@@ -9120,6 +9259,7 @@ define('mip', [
     'require',
     'zepto',
     'naboo',
+    './dom/dom',
     'fetch-jsonp',
     'fetch',
     './utils/fn',
@@ -9129,13 +9269,12 @@ define('mip', [
     './utils/platform',
     './utils/event-emitter',
     './utils/event-action',
-    './utils/customStorage',
-    './sleepWakeModule',
     './dom/css-loader',
     './dom/rect',
     './dom/event',
     './dom/css',
-    './dom/dom',
+    './utils/customStorage',
+    './sleepWakeModule',
     './layout',
     './fixed-element',
     './viewport',
@@ -9155,84 +9294,97 @@ define('mip', [
 ], function (require) {
     require('zepto');
     require('naboo');
-    require('fetch-jsonp');
-    require('fetch');
-    require('./utils/fn');
-    require('./utils/gesture/gesture-recognizer');
-    require('./utils/gesture/data-processor');
-    require('./utils/gesture');
-    require('./utils/platform');
-    require('./utils/event-emitter');
-    require('./utils/event-action');
-    var CustomStorage = require('./utils/customStorage');
-    var sleepWakeModule = require('./sleepWakeModule');
-    // Initialize sleepWakeModule
-    sleepWakeModule.init();
     /* dom */
-    require('./dom/css-loader');
-    require('./dom/rect');
-    require('./dom/event');
-    require('./dom/css');
-    require('./dom/dom');
-    /* mip frame */
-    var layout = require('./layout');
-    require('./fixed-element');
-    var viewport = require('./viewport');
-    require('./customElement');
-    var registerElement = require('./element');
-    require('./util');
-    var resources = require('./resources');
-    var viewer = require('./viewer');
-    var performance = require('./performance');
-    var templates = require('./templates');
-    /* mip hash */
-    var hash = require('./hash');
-    /* builtin components */
-    require('./components/mip-img');
-    require('./components/mip-pix');
-    require('./components/mip-carousel');
-    require('./components/mip-iframe');
-    var components = require('./components/index');
+    var dom = require('./dom/dom');
     // The global variable of MIP
     var Mip = {};
-    if (!window.MIP) {
+    if (window.MIP) {
+        var exts = window.MIP;
+        window.MIP = Mip;
+        MIP.extensions = exts;
+    } else {
         window.MIP = Mip;
     }
-    Mip.css = {};
-    Mip.viewer = viewer;
-    Mip.viewport = viewport;
-    Mip.prerenderElement = resources.prerenderElement;
-    Mip.registerMipElement = function (name, customClass, css) {
-        if (templates.isTemplateClass(customClass)) {
-            templates.register(name, customClass);
-        } else {
-            registerElement(name, customClass, css);
+    // before document ready
+    MIP.push = function (extensions) {
+        if (!MIP.extensions) {
+            MIP.extensions = [];
         }
+        MIP.extensions.push(extensions);
     };
-    MIP.hash = hash;
-    // Initialize viewer
-    viewer.init();
-    // Find the default-hidden elements.
-    var hiddenElements = Array.prototype.slice.call(document.getElementsByClassName('mip-hidden'));
-    // Regular for checking mip elements.
-    var mipTagReg = /mip-/i;
-    // Apply layout for default-hidden elements.
-    hiddenElements.forEach(function (element) {
-        if (element.tagName.search(mipTagReg) > -1) {
-            layout.applyLayout(element);
-        }
+    dom.waitDocumentReady(function () {
+        require('fetch-jsonp');
+        require('fetch');
+        require('./utils/fn');
+        require('./utils/gesture/gesture-recognizer');
+        require('./utils/gesture/data-processor');
+        require('./utils/gesture');
+        require('./utils/platform');
+        require('./utils/event-emitter');
+        require('./utils/event-action');
+        require('./dom/css-loader');
+        require('./dom/rect');
+        require('./dom/event');
+        require('./dom/css');
+        var CustomStorage = require('./utils/customStorage');
+        var sleepWakeModule = require('./sleepWakeModule');
+        /* mip frame */
+        var layout = require('./layout');
+        require('./fixed-element');
+        var viewport = require('./viewport');
+        require('./customElement');
+        var registerElement = require('./element');
+        require('./util');
+        var resources = require('./resources');
+        var viewer = require('./viewer');
+        var performance = require('./performance');
+        var templates = require('./templates');
+        /* mip hash */
+        var hash = require('./hash');
+        /* builtin components */
+        require('./components/mip-img');
+        require('./components/mip-pix');
+        require('./components/mip-carousel');
+        require('./components/mip-iframe');
+        var components = require('./components/index');
+        Mip.css = {};
+        Mip.viewer = viewer;
+        Mip.viewport = viewport;
+        Mip.prerenderElement = resources.prerenderElement;
+        Mip.registerMipElement = function (name, customClass, css) {
+            if (templates.isTemplateClass(customClass)) {
+                templates.register(name, customClass);
+            } else {
+                registerElement(name, customClass, css);
+            }
+        };
+        MIP.hash = hash;
+        // Initialize sleepWakeModule
+        sleepWakeModule.init();
+        // Initialize viewer
+        viewer.init();
+        // Find the default-hidden elements.
+        var hiddenElements = Array.prototype.slice.call(document.getElementsByClassName('mip-hidden'));
+        // Regular for checking mip elements.
+        var mipTagReg = /mip-/i;
+        // Apply layout for default-hidden elements.
+        hiddenElements.forEach(function (element) {
+            if (element.tagName.search(mipTagReg) > -1) {
+                layout.applyLayout(element);
+            }
+        });
+        // Register builtin extensions
+        components.register();
+        performance.start(window._mipStartTiming);
+        performance.on('update', function (timing) {
+            viewer.sendMessage('performance_update', timing);
+        });
+        // Show page
+        viewer.show();
+        // clear cookie
+        var storage = new CustomStorage(2);
+        storage.delExceedCookie();
     });
-    // Register builtin extensions
-    components.register();
-    performance.start(window._mipStartTiming);
-    performance.on('update', function (timing) {
-        viewer.sendMessage('performance_update', timing);
-    });
-    // Show page
-    viewer.show();
-    // clear cookie
-    var storage = new CustomStorage(2);
-    storage.delExceedCookie();
     return Mip;
 });
 
