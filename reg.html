@@ -1,0 +1,22 @@
+<!doctype html>
+<html mip>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <title>正则测试</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    var start = new Date().getTime();
+    var reg = new RegExp('^(http[s]:){0,1}(\/\/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}'
+		+ '(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?){0,1}\/[ic](\/s){0,1}\/(.*)$', 'g');
+    var url = 'https://mipcache.bdstatic.com/c/harttle.com/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+    reg.exec(url);
+    var end = new Date().getTime();
+    console.log(end - start);
+    </script>
+</body>
+
+</html>
