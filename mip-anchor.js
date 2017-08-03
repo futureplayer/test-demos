@@ -8397,7 +8397,7 @@ define('hash', [
      *
      */
     Hash.prototype.bindAnchor = function () {
-        var anchor = this.hashTree['mipanchor'];
+        var anchor = this.hashTree.mipanchor;
         if (anchor && anchor.value) {
             if (document.readyState === 'complete') {
                 this.scrollToAnchor(anchor);
@@ -8410,7 +8410,7 @@ define('hash', [
     /**
      * Scroll to anchor
      *
-     * @params {Object} anchor anchor object
+     * @param {Object} anchor anchor object
      */
     Hash.prototype.scrollToAnchor = function (anchor) {
         var ele = document.getElementById(anchor.value);
@@ -8440,23 +8440,25 @@ define('hash', [
         var hashString = hash.slice(hash.indexOf('#') + 1);
         var hashs = hashString.split('&');
         for (var key in hashs) {
-            var item = hashs[key];
-            var hk = item;
-            var hv = '';
-            var index = item.indexOf('=');
-            // key invalid
-            if (index === 0) {
-                continue;
+            if (hashs.hasOwnProperty(key)) {
+                var item = hashs[key];
+                var hk = item;
+                var hv = '';
+                var index = item.indexOf('=');
+                // key invalid
+                if (index === 0) {
+                    continue;
+                }
+                // key valid
+                if (index !== -1) {
+                    hk = item.substring(0, index);
+                    hv = item.slice(index + 1);
+                }
+                hashObj[hk] = {
+                    value: hv,
+                    sep: index !== -1 ? '=' : ''
+                };
             }
-            // key valid
-            if (index !== -1) {
-                hk = item.substring(0, index);
-                hv = item.slice(index + 1);
-            }
-            hashObj[hk] = {
-                value: hv,
-                sep: index !== -1 ? '=' : ''
-            };
         }
         return hashObj;
     };
@@ -8484,13 +8486,14 @@ define('hash', [
      * @return {boolean} whether enabled or not
      */
     function ssEnabled() {
+        var support = false;
         try {
             window.sessionStorage.setItem('_t', 1);
             window.sessionStorage.removeItem('_t');
-            return true;
+            support = true;
         } catch (e) {
-            return false;
         }
+        return support;
     }
     return new Hash();
 });
