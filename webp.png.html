@@ -20,13 +20,13 @@
 
 	var startTime = new Date().getTime();
 	var img = document.createElement('img');
-	img.src = 'https://futureplayer.github.io/test-demos/scene-less.webp'
+	img.src = 'https://futureplayer.github.io/test-demos/scene.webp'
 	img.onload = function () {
 		var endTime = new Date().getTime();
 		imgload.innerHTML = endTime - startTime;
 	}
 
-    document.addEventListener('DOMContentLoaded', function () {
+	document.addEventListener('DOMContentLoaded', function () {
     	var endTime = new Date().getTime();
         pageload.innerHTML = endTime - startTime;
     }, false);
