@@ -11,16 +11,31 @@
     </style>
 </head>
 <body>
-<!-- 正文 -->
+图片加载完成时间：<span id="imgload"></span>
+页面加载完成时间：<span id="pageload"></span>
 
 <script type="text/javascript">
+	var imgload = document.querySelector('#imgload');
+	var pageload = document.querySelector('#pageload');
+
 	var startTime = new Date().getTime();
 	var img = document.createElement('img');
-	img.src = 'https://futureplayer.github.io/test-demos/scene.png'
+	img.src = 'https://futureplayer.github.io/test-demos/scene.webp'
 	img.onload = function () {
 		var endTime = new Date().getTime();
-		alert(endTime - startTime);
+		imgload.innerHTML = endTime - startTime;
 	}
+
+	if (document.readyState === 'complete') {
+		var endTime = new Date().getTime();
+        pageload.innerHTML = endTime - startTime;
+    }
+    else {
+        document.addEventListener('DOMContentLoaded', function () {
+        	var endTime = new Date().getTime();
+	        pageload.innerHTML = endTime - startTime;
+        }, false);
+    }
 
 </script>
 
