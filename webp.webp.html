@@ -26,16 +26,10 @@
 		imgload.innerHTML = endTime - startTime;
 	}
 
-	if (document.readyState === 'complete') {
-		var endTime = new Date().getTime();
+    document.addEventListener('DOMContentLoaded', function () {
+    	var endTime = new Date().getTime();
         pageload.innerHTML = endTime - startTime;
-    }
-    else {
-        document.addEventListener('DOMContentLoaded', function () {
-        	var endTime = new Date().getTime();
-	        pageload.innerHTML = endTime - startTime;
-        }, false);
-    }
+    }, false);
 
 </script>
 
