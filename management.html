@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html mip>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    <title>title</title>
+    <!-- 正常域名和 path 的脚本，应该正常替换 -->
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/static/v1/mip.css">
+    <!-- 非正常域名，不应该替换 -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.120askimages.com/static/v1/ask/baike/mb/css/animation.css">
+    <!-- 非正常 path，不应该替换 -->
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/extensions/platform/v1/mip.css">
+    <link rel="stylesheet" type="text/css" href="https://c.mipcdn.com/extensions/platform/v1/mip.css">
+
+    <link rel="canonical">
+    <style mip-custom>
+    </style>
+</head>
+<body>
+    <!-- 正常域名和 path 的脚本，应该正常替换 -->
+    <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <mip-img src="https://c.mipcdn.com/static/v1/mip.png"></mip-img>
+
+    <!-- 非正常 path，不应该替换 -->
+    <script src="https://mipcache.bdstatic.com/extensions/platform/v1/mip.js"></script>
+    <script src="https://c.mipcdn.com/extensions/platform/v1//mip.js"></script>
+
+    <!-- 其他类型文件，应该替换 -->
+    <mip-img src="https://c.mipcdn.com/static/v1/mip.png"></mip-img>
+    <!-- 其他类型文件，不应该替换 -->
+    <mip-img src="https://c.mipcdn.com/extensions/platform/v1/mip.png"></mip-img>
+
+    <script src="https://mipcache.bdstatic.com/static/v1/mip.js"></script>
+</body>
+</html>
