@@ -307,6 +307,9 @@
         background-image: url(https://mip-extensions.bj.bcebos.com/oscar/p8.png) !important;
         background-size: cover;
     }
+    mip-story-view {
+        display: none;
+    }
     </style>
 </head>
 <body>
@@ -316,7 +319,7 @@
             "share": {
                 "img": "https://mip-extensions.bj.bcebos.com/oscar/cover.jpg",
                 "title": "第90届奥斯卡颁奖典礼回顾",
-                "from": "1905电影网",
+                "from": "oscar",
                 "readings": "10000"
             }
         }
@@ -328,7 +331,7 @@
             <mip-story-layer>
                 <div class="page1-wrap">
                     <span>第90届奥斯卡</span>
-                    <span>The 90 Oscar</span>
+                    <span>The 90th Oscar</span>
                     <span class="line"></span>
                     <span>颁奖典礼回顾</span>
                 </div>
@@ -578,8 +581,17 @@
             </mip-story-layer>
         </mip-story-view>
     </mip-story>
+    <mip-stats-baidu>
+        <script type="application/json">
+            {
+                "token": "02890d4a309827eb62bc3335b2b28f7f",
+                "_setAutoPageview": [true]
+            }
+        </script>
+    </mip-stats-baidu>
     <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
     <script src="https://c.mipcdn.com/static/v1/mip-share/mip-share.js"></script>
     <script src="./mip-story.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
 </body>
 </html>
