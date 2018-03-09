@@ -49,26 +49,6 @@
             opacity:0;
         }
     }
-    @keyframes fly-in-top {
-        0%{
-            transform: translateY(-200%);
-            -webkit-transform: translateY(-200%);
-        }
-        100%{
-            transform: translateY(0);
-            -webkit-transform: translateY(0);
-        }
-    }
-    @-webkit-keyframes fly-in-top {
-        0%{
-            transform: translateY(-200%);
-            -webkit-transform: translateY(-200%);
-        }
-        100%{
-            transform: translateY(0);
-            -webkit-transform: translateY(0);
-        }
-    }
     @keyframes scale {
         0%{
             opacity: 1;
@@ -81,7 +61,7 @@
             -webkit-transform: scale(1.1, 1.1);
         }
     }
-    @-webkit-keyframes fly-in-top {
+    @-webkit-keyframes scale {
         0%{
             opacity: 1;
             transform: scale(1, 1);
@@ -93,11 +73,17 @@
             -webkit-transform: scale(1.1, 1.1);
         }
     }
-    .fly-in-top {
-        animation: fly-in-top 1s ease;
-    }
     .fade-in {
-        opacity: 0
+        transform-origin: 50% 5%;
+        animation: fade-in 1s ease;
+        -webkit-animation: fade-in 1s ease;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+    .fade-in-scale {
+        display: none;
+        opacity: 0;
+        transform-origin: 50% 5%;
         animation: scale 1s ease;
         -webkit-animation: scale 1s ease;
         animation-fill-mode: forwards;
@@ -337,7 +323,7 @@
         </script>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" class="fade-in" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p1.png"></mip-img>
+                <mip-img width="480" class="fade-in-scale" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p1.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="page1-wrap">
@@ -405,7 +391,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" height="720" class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p5.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in-scale" src="https://mip-extensions.bj.bcebos.com/oscar/p5.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap2">
@@ -422,7 +408,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" height="720" class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p6.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in-scale" src="https://mip-extensions.bj.bcebos.com/oscar/p6.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap2">
@@ -439,7 +425,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" height="720" class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p7.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in-scale" src="https://mip-extensions.bj.bcebos.com/oscar/p7.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap1">
@@ -594,6 +580,6 @@
     </mip-story>
     <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
     <script src="https://c.mipcdn.com/static/v1/mip-share/mip-share.js"></script>
-    <script src="./mip-story.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-story/mip-story.js"></script>
 </body>
 </html>
