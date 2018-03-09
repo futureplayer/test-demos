@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<HTML MIP>
-<HEAD>
+<html mip>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
     <title>第90届奥斯卡颁奖典礼回顾</title>
     <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
     <link rel="canonical" href="http://www.1905.com/mip/oscar">
@@ -49,15 +49,60 @@
             opacity:0;
         }
     }
+    @keyframes scale {
+        0%{
+            opacity: 1;
+            transform: scale(1, 1);
+            -webkit-transform: scale(1, 1);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1.1, 1.1);
+            -webkit-transform: scale(1.1, 1.1);
+        }
+    }
+    @-webkit-keyframes scale {
+        0%{
+            opacity: 1;
+            transform: scale(1, 1);
+            -webkit-transform: scale(1, 1);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1.1, 1.1);
+            -webkit-transform: scale(1.1, 1.1);
+        }
+    }
+    .fade-in {
+        transform-origin: 50% 5%;
+        animation: fade-in 1s ease;
+        -webkit-animation: fade-in 1s ease;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+    .fade-in-scale {
+        display: none;
+        opacity: 0;
+        transform-origin: 50% 5%;
+        animation: scale 1s ease;
+        -webkit-animation: scale 1s ease;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
     .page1-wrap {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 62px;
+        bottom: 40px;
         width: 100%;
         opacity: 1;
         animation: fade-in 3s ease;
         -webkit-animation: fade-in 3s ease;
+        animation-delay: 1s;
+        -webkit-animation-delay: 1s;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        opacity: 0;
         z-index: 101;
     }
     mip-story-layer span {
@@ -91,9 +136,14 @@
         left: 0;
         right: 0;
         bottom: 0;
-        padding: 0 40px 62px 40px;
+        padding: 0 40px 40px 40px;
         animation: fade-in 3s ease;
         -webkit-animation: fade-in 3s ease;
+        animation-delay: 1s;
+        -webkit-animation-delay: 1s;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        opacity: 0;
         z-index: 101;
     }
     .mask {
@@ -121,11 +171,13 @@
         color: #f3d78e;
         margin-top: 14px;
         font-size: 20px;
+        line-height: 20px;
         color: #f3d78e;
     }
     .common-wrap1 > :nth-child(3) {
         margin-top: 14px;
         font-size: 30px;
+        line-height: 30px;
         color: #fff;
         font-weight: bold;
     }
@@ -138,12 +190,14 @@
     .common-wrap1 > :nth-child(5) {
         color: #f3d78e;
         font-size: 20px;
+        line-height: 20px;
         margin-top: 14px;
     }
     .common-wrap1 > :nth-child(6) {
         color: #fff;
         margin-top: 10px;
         font-size: 30px;
+        line-height: 30px;
         font-weight: bold;
     }
     .common-wrap2 {
@@ -153,7 +207,12 @@
         bottom: 0;
         animation: fade-in 3s eas;
         -webkit-animation: fade-in 3s ease;
-        padding: 0 40px 62px 40px;
+        animation-delay: 1s;
+        -webkit-animation-delay: 1s;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        opacity: 0;
+        padding: 0 40px 40px 40px;
         z-index: 101;
     }
     .common-wrap2 span {
@@ -187,7 +246,7 @@
     .common-wrap3 {
         position: absolute;
         left: 40px;
-        bottom: 62px;
+        bottom: 40px;
         width: 100%;
         z-index: 101;
     }
@@ -249,7 +308,7 @@
         background-size: cover;
     }
     </style>
-</HEAD>
+</head>
 <body>
     <mip-story standalone>
         <script type="application/json">
@@ -264,7 +323,7 @@
         </script>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p1.png"></mip-img>
+                <mip-img width="480" class="fade-in-scale" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p1.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="page1-wrap">
@@ -315,7 +374,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p4.gif"></mip-img>
+                <mip-img width="480" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p4.gif"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap2">
@@ -332,7 +391,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p5.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in-scale" src="https://mip-extensions.bj.bcebos.com/oscar/p5.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap2">
@@ -349,7 +408,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p6.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in-scale" src="https://mip-extensions.bj.bcebos.com/oscar/p6.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap2">
@@ -366,7 +425,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p7.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in-scale" src="https://mip-extensions.bj.bcebos.com/oscar/p7.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap1">
@@ -384,7 +443,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
+                <mip-img class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap3">
@@ -434,7 +493,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
+                <mip-img class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap3">
@@ -484,7 +543,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
+                <mip-img class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap3">
@@ -519,8 +578,17 @@
             </mip-story-layer>
         </mip-story-view>
     </mip-story>
+    <mip-stats-baidu>
+        <script type="application/json">
+            {
+                "token": "02890d4a309827eb62bc3335b2b28f7f",
+                "_setAutoPageview": [true]
+            }
+        </script>
+    </mip-stats-baidu>
     <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
     <script src="https://c.mipcdn.com/static/v1/mip-share/mip-share.js"></script>
-    <script src="./mip-story.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-story/mip-story.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
 </body>
 </html>
