@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<HTML MIP>
-<HEAD>
+<html mip>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
     <title>第90届奥斯卡颁奖典礼回顾</title>
     <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
     <link rel="canonical" href="http://www.1905.com/mip/oscar">
@@ -69,14 +69,45 @@
             -webkit-transform: translateY(0);
         }
     }
+    @keyframes scale {
+        0%{
+            opacity: 1;
+            transform: scale(1, 1);
+            -webkit-transform: scale(1, 1);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1.1, 1.1);
+            -webkit-transform: scale(1.1, 1.1);
+        }
+    }
+    @-webkit-keyframes fly-in-top {
+        0%{
+            opacity: 1;
+            transform: scale(1, 1);
+            -webkit-transform: scale(1, 1);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1.1, 1.1);
+            -webkit-transform: scale(1.1, 1.1);
+        }
+    }
     .fly-in-top {
         animation: fly-in-top 1s ease;
+    }
+    .fade-in {
+        opacity: 0
+        animation: scale 1s ease;
+        -webkit-animation: scale 1s ease;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
     }
     .page1-wrap {
         position: absolute;
         left: 0;
         right: 0;
-        bottom: 62px;
+        bottom: 40px;
         width: 100%;
         opacity: 1;
         animation: fade-in 3s ease;
@@ -119,7 +150,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        padding: 0 40px 62px 40px;
+        padding: 0 40px 40px 40px;
         animation: fade-in 3s ease;
         -webkit-animation: fade-in 3s ease;
         animation-delay: 1s;
@@ -154,6 +185,7 @@
         color: #f3d78e;
         margin-top: 14px;
         font-size: 20px;
+        line-height: 20px;
         color: #f3d78e;
     }
     .common-wrap1 > :nth-child(3) {
@@ -172,12 +204,14 @@
     .common-wrap1 > :nth-child(5) {
         color: #f3d78e;
         font-size: 20px;
+        line-height: 20px;
         margin-top: 14px;
     }
     .common-wrap1 > :nth-child(6) {
         color: #fff;
         margin-top: 10px;
         font-size: 30px;
+        line-height: 30px;
         font-weight: bold;
     }
     .common-wrap2 {
@@ -192,7 +226,7 @@
         animation-fill-mode: forwards;
         -webkit-animation-fill-mode: forwards;
         opacity: 0;
-        padding: 0 40px 62px 40px;
+        padding: 0 40px 40px 40px;
         z-index: 101;
     }
     .common-wrap2 span {
@@ -226,7 +260,7 @@
     .common-wrap3 {
         position: absolute;
         left: 40px;
-        bottom: 62px;
+        bottom: 40px;
         width: 100%;
         z-index: 101;
     }
@@ -288,7 +322,7 @@
         background-size: cover;
     }
     </style>
-</HEAD>
+</head>
 <body>
     <mip-story standalone>
         <script type="application/json">
@@ -303,7 +337,7 @@
         </script>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" class="fly-in-top" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p1.png"></mip-img>
+                <mip-img width="480" class="fade-in" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p1.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="page1-wrap">
@@ -371,7 +405,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" height="720" class="fly-in-top" src="https://mip-extensions.bj.bcebos.com/oscar/p5.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p5.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap2">
@@ -388,7 +422,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" height="720" class="fly-in-top" src="https://mip-extensions.bj.bcebos.com/oscar/p6.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p6.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap2">
@@ -405,7 +439,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img width="480" height="720" class="fly-in-top" src="https://mip-extensions.bj.bcebos.com/oscar/p7.png"></mip-img>
+                <mip-img width="480" height="720" class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p7.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap1">
@@ -423,7 +457,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
+                <mip-img class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap3">
@@ -473,7 +507,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
+                <mip-img class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap3">
@@ -523,7 +557,7 @@
         </mip-story-view>
         <mip-story-view>
             <mip-story-layer template="fill">
-                <mip-img src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
+                <mip-img class="fade-in" src="https://mip-extensions.bj.bcebos.com/oscar/p8.png"></mip-img>
             </mip-story-layer>
             <mip-story-layer>
                 <div class="common-wrap3">
