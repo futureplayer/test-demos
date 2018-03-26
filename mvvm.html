@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html mip>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="canonical" href="https://www.mipengine.org/test_xxx.html">
+    <title>mip bind demo</title>
+    <style mip-custom>
+    input[type='checkbox'] {
+        display: inline-block;
+    }
+    </style>
+</head>
+
+<body class="mip-i-android-scroll" style="opacity: 1; animation: none;">
+    <h1>case1：input 操作 checked,selected,disabled,autofocus,controls,hidden,multiple,readonly,required</h1>
+    <mip-data class="mip-element mip-layout-container">
+        <script type="application/json">
+        {
+            "box": {
+                "checked": false
+            },
+            "checked": false,
+            "disabled": false,
+            "checkboxed": false,
+            "checkboxDisabled": false,
+            "autofocus": true,
+            "readOnly": false,
+            "required": true
+        }
+        </script>
+    </mip-data>
+    <mip-form url="https://xuexb.com" class="mip-element mip-layout-container">
+        <p>
+            单选按钮：
+            <input name="radio" type="radio" m-bind:checked="box.checked" m-bind:disabled="disabled">
+            <input name="radio" type="radio" on="change:MIP.setData({box:{checked:false}})" m-bind:disabled="disabled">
+        </p>
+    </mip-form>
+    <p>
+        <button class="btn1" on="tap:MIP.setData({box:{checked:true}})">
+            选中第一个
+        </button>
+        <button on="tap:MIP.setData({disabled:!m.disabled})">
+            禁用/启用
+        </button>
+    </p>
+
+    <mip-data class="mip-element mip-layout-container">
+        <script type="application/json">
+        {
+            "checkbox1": false,
+            "checkbox2": false,
+            "checkbox3": false,
+            "checkbox4": false
+        }
+        </script>
+    </mip-data>
+    <mip-form url="https://xuexb.com" class="mip-element mip-layout-container">
+        <p>
+            复选按钮：
+            <input type="checkbox" m-bind:checked="checkbox1" m-bind:disabled="checkboxDisabled" on="tap:MIP.setData({checkbox1:!m.checkbox1})">
+            <input type="checkbox" m-bind:checked="checkbox2" m-bind:disabled="checkboxDisabled" on="tap:MIP.setData({checkbox2:!m.checkbox2})">
+            <input type="checkbox" m-bind:checked="checkbox3" m-bind:disabled="checkboxDisabled" on="tap:MIP.setData({checkbox3:!m.checkbox3})">
+            <input type="checkbox" m-bind:checked="checkbox4" m-bind:disabled="checkboxDisabled" on="tap:MIP.setData({checkbox4:!m.checkbox4})">
+        </p>
+    </mip-form>
+    <p>
+        <button class="btn1" on="tap:MIP.setData({checkbox2:true,checkbox3:true,checkbox4:true,checkbox1:true})">
+            全选
+        </button>
+        <button class="btn1" on="tap:MIP.setData({checkbox2:false,checkbox3:false,checkbox4:false,checkbox1:false})">
+            取消全选
+        </button>
+        <button on="tap:MIP.setData({checkboxDisabled:!m.checkboxDisabled})">
+            禁用/启用
+        </button>
+    </p>
+
+    <mip-form url="https://xuexb.com" class="mip-element mip-layout-container">
+        <p>
+            <input type="text" m-bind:autofocus="autofocus" placeholder="第一个输入框">
+            <input type="text" m-bind:readOnly="readOnly" placeholder="第二个输入框">
+            <input type="text" m-bind:required="required" />
+            <input type="submit" value="提交" />
+        </p>
+    </mip-form>
+    <p>
+        <button class="btn1" on="tap:MIP.setData({autofocus:false})">
+            取消第一个元素自动聚焦
+        </button>
+        <button class="btn1" on="tap:MIP.setData({readOnly:true})">
+            第二个元素只读
+        </button>
+        <button on="tap:MIP.setData({required:''})">
+            取消必要
+        </button>
+    </p>
+
+
+    <hr id="mae17a">
+    <h1>case2：元素的 on:change 事件示例</h1>
+    <mip-data class="mip-element mip-layout-container">
+        <script type="application/json">
+        {
+            "text": "请输入文字到文本框并离开焦点"
+        }
+        </script>
+    </mip-data>
+    <mip-form url="https://xuexb.com" class="mip-element mip-layout-container">
+        <form action="https://xuexb.com" method="GET" target="_blank">
+            <input m-bind:value="text" type="text" on="change:MIP.setData({text:DOM.value})">
+            <span m-text="text"></span>
+            <h2>请输入文字到文本框并离开焦点</h2></form>
+    </mip-form>
+    <hr id="m51aa3">
+    <h1>case3：select 选中示例，不可用，需要使用 prop</h1>
+    <mip-data class="mip-element mip-layout-container">
+        <script type="application/json">
+        {
+            "selected": "1"
+        }
+        </script>
+    </mip-data>
+    <mip-form url="https://xuexb.com" class="mip-element mip-layout-container">
+        <form action="https://xuexb.com" method="GET" target="_blank">
+            <select m-bind:value="selected">
+                <option value="1">
+                    01
+                </option>
+                <option value="2">
+                    02
+                </option>
+                <option value="3">
+                    03
+                </option>
+            </select>
+            <p>
+                当前选中：
+                <span m-text="selected">1</span>
+            </p>
+            <hr>
+            <button on="tap:MIP.setData({selected:1})" type="button">
+                选中1
+            </button>
+            <button on="tap:MIP.setData({selected:2})" type="button">
+                选中2
+            </button>
+            <button on="tap:MIP.setData({selected:3})" type="button">
+                选中3
+            </button>
+        </form>
+    </mip-form>
+
+    <h1>case4：操作 textarea</h1>
+    <mip-data class="mip-element mip-layout-container">
+        <script type="application/json">
+        {
+            "textarea": "内容"
+        }
+        </script>
+    </mip-data>
+    <mip-form url="https://xuexb.com" class="mip-element mip-layout-container">
+        <form action="https://xuexb.com" method="GET" target="_blank">
+            <textarea m-bind:value="textarea"></textarea>
+            <span m-text="textarea"></span>
+        </form>
+    </mip-form>
+    <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-form.js"></script>
+    <script src="./mip-bind.js"></script>
+</body>
+
+</html>
