@@ -409,7 +409,7 @@
     </style>
 </head>
 <body>
-    <mip-story>
+    <mip-story background-audio="https://mip-doc.bj.bcebos.com/guitar.mp3">
         <script type="application/json">
         {
             "share": {
@@ -417,11 +417,45 @@
                 "background": "https://mip-extensions.bj.bcebos.com/oscar/p8.png",
                 "title": "第90届奥斯卡颁奖典礼回顾",
                 "from": "小故事",
-                "readings": "10000"
+                "readings": "10000",
+                "fromUrl": "https://www.baidu.com/"
+            },
+            "recommend": {
+                "url": "https://www.baidu.com/",
+                "items": [
+                    {
+                        "cover": "https://www.mipengine.org/static/img/mip-story/p5.png",
+                        "url": "https://www.baidu.com/",
+                        "title": "第80届奥斯卡颁奖典礼第80届奥斯卡颁奖典礼第80届奥斯卡颁奖典礼第80届奥斯卡颁奖典礼第80届奥斯卡颁奖典礼第80届奥斯卡颁奖典礼第80届奥斯卡颁奖典礼",
+                        "from": "oscaroscaroscaroscaroscaroscaroscaroscaroscaroscaroscaroscaroscar",
+                        "fromUrl": "http://github.com/"
+                    },
+                    {
+                        "cover": "https://www.mipengine.org/static/img/mip-story/p5.png",
+                        "url": "https://www.baidu.com/",
+                        "title": "第80届奥斯卡颁奖典礼",
+                        "from": "oscar",
+                        "fromUrl": "http://github.com/"
+                    },
+                    {
+                        "cover": "https://www.mipengine.org/static/img/mip-story/p5.png",
+                        "url": "https://www.baidu.com/",
+                        "title": "第80届奥斯卡颁奖典礼",
+                        "from": "oscar",
+                        "fromUrl": "http://github.com/"
+                    },
+                    {
+                        "cover": "https://www.mipengine.org/static/img/mip-story/p5.png",
+                        "url": "https://www.baidu.com/",
+                        "title": "第80届奥斯卡颁奖典礼",
+                        "from": "oscar",
+                        "fromUrl": "http://github.com/"
+                    }
+                ]
             }
         }
         </script>
-        <mip-story-view>
+        <mip-story-view background-audio="http://sc1.111ttt.cn:8282/2017/1/11/11/304112004168.mp3?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97">
             <mip-story-layer template="fill">
                 <!-- <mip-img width="480" class="fade-in-scale" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p1.png"></mip-img> -->
                 <mip-img width="480" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p2.gif"></mip-img>
@@ -438,28 +472,7 @@
                 <div class="mask"></div>
             </mip-story-layer>
         </mip-story-view>
-        <mip-story-view>
-            <mip-story-layer template="fill">
-                <mip-video controls playsinline webkit-playsinline loop poster="https://www.mipengine.org/static/img/mip-story/p2.gif"
-                  layout="responsive" width="640" height="360"
-                  src="https://gss0.bdstatic.com/-b1Caiqa0d9Bmcmop9aC2jh9h2w8e4_h7sED0YQ_t9iCPK/mda-gjkt21pkrsd8ae5y/mda-gjkt21pkrsd8ae5y.mp4">
-                </mip-video>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="common-wrap1">
-                    <span></span>
-                    <span>最佳影片</span>
-                    <span>水形物语</span>
-                    <span></span>
-                    <span>最佳导演</span>
-                    <span>吉尔莫·德尔·托罗</span>
-                </div>
-            </mip-story-layer>
-            <mip-story-layer>
-                <div class="mask"></div>
-            </mip-story-layer>
-        </mip-story-view>
-        <mip-story-view>
+        <mip-story-view background-audio="http://sc1.111ttt.cn:8282/2017/1/11/11/304112004168.mp3?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97">
             <mip-story-layer template="fill">
                 <mip-img width="480" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p3.gif"></mip-img>
             </mip-story-layer>
@@ -476,7 +489,7 @@
                 <div class="mask"></div>
             </mip-story-layer>
         </mip-story-view>
-        <mip-story-view>
+        <mip-story-view background-audio="http://sc1.111ttt.cn:8282/2017/1/11/11/304112004168.mp3?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97">
             <mip-story-layer template="fill">
                 <mip-img width="480" height="720" src="https://mip-extensions.bj.bcebos.com/oscar/p4.gif"></mip-img>
             </mip-story-layer>
@@ -692,8 +705,9 @@
     </mip-stats-baidu>
     <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
     <script src="https://c.mipcdn.com/static/v1/mip-share/mip-share.js"></script>
-    <script src="https://c.mipcdn.com/static/v1/mip-story/mip-story.js"></script>
     <script src="https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
     <script src="https://c.mipcdn.com/static/v1/mip-audio/mip-audio.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js"></script>
+    <script src="./mip-story.js"></script>
 </body>
 </html>
