@@ -301,7 +301,15 @@
     mip-story-view {
         display: none;
     }
-
+    [flex-area=upper-third] {
+        background: red;
+    }
+    [flex-area=middle-third] {
+        background: green;
+    }
+    [flex-area=lower-third] {
+        background: pink;
+    }
     @media screen and (max-width: 350px) {
         .page1-wrap {
             bottom: 30px;
@@ -470,6 +478,13 @@
             </mip-story-layer>
             <mip-story-layer>
                 <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view background-audio="http://sc1.111ttt.cn:8282/2017/1/11/11/304112004168.mp3?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97">
+            <mip-story-layer template="thirds">
+                <span flex-area="upper-third">top</span>
+                <span flex-area="middle-third">middle</span>
+                <span flex-area="lower-third">bottom</span>
             </mip-story-layer>
         </mip-story-view>
         <mip-story-view background-audio="http://sc1.111ttt.cn:8282/2017/1/11/11/304112004168.mp3?tflag=1519095601&pin=6cd414115fdb9a950d827487b16b5f97">
