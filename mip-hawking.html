@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html mip>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=no">
+    <title>一分钟了解霍金的一生</title>
+    <link rel="stylesheet" type="text/css" href="https://mipcache.bdstatic.com/static/v1/mip.css">
+    <link rel="canonical" href="https://www.mipengine.org/story/hawking.html">
+    <style mip-custom>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    @keyframes fade-in {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+    @-webkit-keyframes fade-in {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+
+    @keyframes scale-and-transfrom {
+        0% {
+            transform: translateX(0px);
+            -webkit-transform: translateX(0px);
+        }
+        100% {
+            transform: translateX(-60px);
+            -webkit-transform: translateX(-60px);
+        }
+    }
+    @-webkit-keyframes scale-and-transfrom {
+        0% {
+            transform: translateX(0px);
+            -webkit-transform: translateX(0px);
+        }
+        100% {
+            transform: translateX(-60px);
+            -webkit-transform: translateX(-60px);
+        }
+    }
+    @-webkit-keyframes fade-in {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+
+    @keyframes fade-in-and-transform {
+        0%{
+            opacity: 0;
+            transform: translateX(-5px);
+            -webkit-transform: translateX(-5px);
+        }
+        100% {
+            opacity:1;
+            transform: translateX(0px);
+            -webkit-transform: translateX(0px);
+        }
+    }
+    @-webkit-keyframes fade-in-and-transform {
+        0%{
+            opacity: 0;
+            transform: translateX(-5px);
+            -webkit-transform: translateX(-5px);
+        }
+        100% {
+            opacity:1;
+            transform: translateX(0px);
+            -webkit-transform: translateX(0px);
+        }
+    }
+    @keyframes scale-and-rotate {
+        0% {
+            transform-origin: center;
+            -webkit-transform-origin: center;
+            transform: rotate(0) scale(1.8);
+            -webkit-transform: rotate(0) scale(1.8);
+        }
+        100% {
+            transform-origin: center;
+            -webkit-transform-origin: center;
+            transform: rotate(-90deg) scale(1.8);
+            -webkit-transform: rotate(-90deg) scale(1.8);
+        }
+    }
+    @-webkit-keyframes scale-and-rotate {
+        0% {
+            transform-origin: center;
+            -webkit-transform-origin: center;
+            transform: rotate(0) scale(1.8);
+            -webkit-transform: rotate(0) scale(1.8);
+        }
+        100% {
+            transform-origin: center;
+            -webkit-transform-origin: center;
+            transform: rotate(-90deg) scale(1.8);
+            -webkit-transform: rotate(-90deg) scale(1.8);
+        }
+    }
+    @keyframes shake-up-and-down {
+        0% {
+            transform: translateY(-5px);
+            -webkit-transform: translateY(-5px);
+        }
+        50% {
+            transform: translateY(5px);
+            -webkit-transform: translateY(5px);
+        }
+        100% {
+            transform: translateY(-5px);
+            -webkit-transform: translateY(-5px);
+        }
+    }
+    @-webkit-keyframes shake-up-and-down {
+        0% {
+            transform: translateY(-5px);
+            -webkit-transform: translateY(-5px);
+        }
+        50% {
+            transform: translateY(5px);
+            -webkit-transform: translateY(5px);
+        }
+        100% {
+            transform: translateY(-5px);
+            -webkit-transform: translateY(-5px);
+        }
+    }
+
+    @-webkit-keyframes fade-in {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity:1;
+        }
+    }
+
+    @keyframes fade-in-out {
+        0%{
+            opacity:0;
+        }
+        90%{
+            opacity:1;
+        }
+        100%{
+            opacity:0;
+        }
+    }
+    @-webkit-keyframes fade-in-out {
+        0%{
+            opacity: 0;
+        }
+        90%{
+            opacity:1;
+        }
+        100%{
+            opacity:0;
+        }
+    }
+    @keyframes scale {
+        0%{
+            opacity: 1;
+            transform: scale(1, 1);
+            -webkit-transform: scale(1, 1);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1.1, 1.1);
+            -webkit-transform: scale(1.1, 1.1);
+        }
+    }
+    @-webkit-keyframes scale {
+        0%{
+            opacity: 1;
+            transform: scale(1, 1);
+            -webkit-transform: scale(1, 1);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1.1, 1.1);
+            -webkit-transform: scale(1.1, 1.1);
+        }
+    }
+    @keyframes minsize {
+        0%{
+            opacity: 1;
+            transform: scale(1.1, 1.1);
+            -webkit-transform: scale(1.1, 1.1);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1, 1);
+            -webkit-transform: scale(1, 1);
+        }
+    }
+    @-webkit-keyframes minsize {
+        0%{
+            opacity: 1;
+            transform: scale(1.1, 1.1);
+            -webkit-transform: scale(1.1, 1.1);
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1, 1);
+            -webkit-transform: scale(1, 1);
+        }
+    }
+    .mask {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        height: 345px;
+        background: linear-gradient(bottom, rgba(0, 0, 0, 1), transparent);
+        background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1), transparent);
+    }
+    .fade-in-scale {
+        display: none;
+        opacity: 0;
+        transform-origin: 50% 5%;
+        animation: scale 4.8s linear;
+        -webkit-animation: scale 4.8s linear;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+    .scale-and-transfrom {
+        transform-origin: center;
+        animation: scale-and-transfrom 10s linear;
+        -webkit-animation: scale-and-transfrom 10s linear;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+    .fade-out-minsize {
+        display: none;
+        opacity: 0;
+        transform-origin: 50% 5%;
+        animation: minsize 4.8s linear;
+        -webkit-animation: minsize 4.8s linear;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+    .fade-in-and-transfrom {
+        opacity: 0;
+        animation: fade-in-and-transform 3s ease;
+        -webkit-animation: fade-in-and-transform 3s ease;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+
+    .page1-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 25px;
+        width: 100%;
+        opacity: 1;
+        animation: fade-in 2s ease;
+        -webkit-animation: fade-in 2s ease;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        opacity: 0;
+        z-index: 101;
+    }
+    .page2-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        width: 100%;
+        opacity: 1;
+        animation: fade-in 2s ease;
+        -webkit-animation: fade-in 2s ease;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        opacity: 0;
+        z-index: 101;
+        text-align: center;
+    }
+
+    mip-story-layer span {
+        display: block;
+        text-align: left
+    }
+
+    .scale-and-rotate {
+        opacity: 1;
+        display: block;
+        animation: scale-and-rotate 60s linear;
+        -webkit-animation: scale-and-rotate 60s linear;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+    .shake-up-and-down {
+        opacity: 1;
+        display: block;
+        animation: shake-up-and-down 5s ease-in-out infinite;
+        -webkit-animation: shake-up-and-down 5s ease-in-out infinite;
+    }
+    .page1-wrap > :first-child {
+        font-size: 30px;
+        line-height: 36px;
+        color: #FFFFFF;
+        font-weight: bold;
+        margin-left: 40px;
+    }
+    .page1-wrap > :nth-child(2) {
+        font-size: 18px;
+        color: #FFFFFF;
+        margin: 14px 40px 20px 40px;
+        line-height: 30px;
+    }
+    .page1-wrap .name {
+        font-size: 30px;
+        line-height: 34px;
+        color: #FFFFFF;
+        font-weight: bold;
+        margin-left: 0px;
+        text-align: center;
+    }
+    .page1-wrap .english-name {
+        font-size: 18px;
+        color: #808080;
+        text-align: center;
+        margin: 0;
+        margin-bottom: 30px;
+        margin-top: 2px;
+    }
+
+    .page1-wrap .date {
+        font-size: 20px;
+        color: #FFFFFF;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .page1-wrap .desc {
+        font-size: 18px;
+        color: #FFFFFF;
+        margin-left: 0px;
+        margin-top:  10px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .page2-wrap span {
+        font-size: 18px;
+        color: #FFFFFF;
+        margin: 14px 10px 20px 10px;
+        line-height: 28px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        transform: translate(-50%, -50%);
+        bottom: 0;
+    }
+    .page2-wrap span em {
+        font-style: normal;
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .page7-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        width: 100%;
+        opacity: 1;
+        animation: fade-in 2s ease;
+        -webkit-animation: fade-in 2s ease;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        z-index: 101;
+        text-align: left;
+        padding: 0 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+        color: #FFFFFF;
+        line-height: 30px;
+    }
+
+    .page1-wrap .title-bottom {
+        font-size: 18px;
+        color: #FFFFFF;
+        margin: 14px 40px 20px 40px;
+        line-height: 30px;
+    }
+
+    .page1-wrap .title-center {
+        text-align: left;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        font-size: 24px;
+    }
+
+   .last-animation {
+        animation: fade-in 2s ease !important;
+        -webkit-animation: fade-in 2s ease !important;
+    }
+    .noBottom {
+        margin-bottom: 0 !important;
+    }
+    .mip-backend {
+        background-size: cover;
+    }
+    mip-story-view {
+        display: none;
+    }
+
+    </style>
+</head>
+<body>
+    <mip-story standalone background-audio="https://mip-extensions.bj.bcebos.com/story-hawkin%2Fmusic.mp3">
+        <script type="application/json">
+        {
+            "share": {
+                "thumbnail": "https://www.mipengine.org/static/img/mip-story/hawking/hawking-logo.png",
+                "background": "https://www.mipengine.org/static/img/mip-story/hawking/p9.jpg",
+                "title": "一分钟了解霍金的一生",
+                "from": "",
+                "readings": "10000"
+            }
+        }
+        </script>
+        <mip-story-view>
+            <mip-story-layer template="fill">
+                <mip-img height="720" src="https://www.mipengine.org/static/img/mip-story/hawking/p1.jpg"></mip-img>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="page1-wrap">
+                    <span class="fade-in-and-transfrom name">斯蒂芬·霍金</span>
+                    <span class="fade-in-and-transfrom english-name">Stephen Hawking</span>
+                    <span class="fade-in-and-transfrom date">1942.1.8 —— 2018.3.14
+                    </span>
+                    <span class="fade-in-and-transfrom desc">
+                    英国剑桥大学著名物理学家<br/>现代最伟大的物理学家之一
+                    </span>
+                </div>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="fill">
+                <mip-img height="720" class="fade-in-scale" src="https://www.mipengine.org/static/img/mip-story/hawking/p2.jpg"></mip-img>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="page1-wrap">
+                    <span></span>
+                    <span class="fade-in-and-transfrom">霍金21岁时患上肌肉萎缩性侧索硬化症，全身瘫痪，不能言语，仅有三根手指可以活动</span>
+                </div>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="fill">
+                <mip-img class="scale-and-rotate" height="720" src="https://www.mipengine.org/static/img/mip-story/hawking/p3c.jpg"></mip-img>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="page1-wrap">
+                    <span></span>
+                    <span class="fade-in-and-transfrom">霍金一生致力于研究宇宙论和黑洞，证明了广义相对论的奇性定理和黑洞面积定理，提出了黑洞蒸发理论和无边界的霍金宇宙模型</span>
+                </div>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="fill">
+                <mip-img width="480" class="scale-and-transfrom" src="https://www.mipengine.org/static/img/mip-story/hawking/p4a.jpg"></mip-img>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="page1-wrap">
+                    <span></span>
+                    <span class="fade-in-and-transfrom">
+                    1989年<br/>
+                    获得英国爵士荣誉称号，成为英国皇家学会学员、美国科学院外籍院士
+                    <br/>
+                    <br/>
+                    2009年
+                    <br/>
+                    获得自由勋章，由奥巴马亲自颁发</span>
+                </div>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="fill">
+                <mip-img class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/mip-story/hawking/p5.jpg"></mip-img>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="page1-wrap">
+                    <span></span>
+                    <span class="fade-in-and-transfrom">霍金的著作《时间简史》与续作《果壳中的宇宙》用深入浅出的语言向我们描绘了宇宙最根本的样子</span>
+
+                </div>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="fill">
+                <mip-img height="720" class="fade-in-scale" src="https://www.mipengine.org/static/img/mip-story/hawking/p6.jpg"></mip-img>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="page1-wrap">
+                    <span></span>
+                    <span class="fade-in-and-transfrom">
+                        霍金曾客串出演情景喜剧《生活大爆炸》
+                        <br>
+                        2014年，个人传记电影《万物理论》上映
+                    </span>
+                </div>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="fill">
+                <mip-img class="fade-in-scale" height="720" src="https://www.mipengine.org/static/img/mip-story/hawking/p7.jpg"></mip-img>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="page1-wrap fade-in">
+                    <span></span>
+                    <span class="title-center fade-in-and-transfrom">霍金曾做出以下预言</span>
+                    <span class="title-bottom fade-in-and-transfrom">
+                        2032年 地球进入冰河时代<br/>
+                        2060年 人类必须离开地球<br/>
+                        2100年 人类进入外太空新人种出现<br/>
+                        2215年 地球将面临灾难性毁灭<br/>
+                        2600年 地球变成炽热的火球<br/>
+                    </span>
+                </div>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+        <mip-story-view>
+            <mip-story-layer template="fill">
+                <mip-img height="720" class="fade-out-minsize" src="https://www.mipengine.org/static/img/mip-story/hawking/p8.jpg"></mip-img>
+            </mip-story-layer>
+            <mip-story-layer>
+                <span></span>
+                <div class="page1-wrap">
+                    <span></span>
+                    <span class="fade-in-and-transfrom">
+                    生于伽利略忌日<br/>
+                    卒于爱因斯坦诞辰<br/>
+                    世间再无霍金<br/>
+                    时间永留简史<br/>
+                    他去了属于他自己的浩瀚宇宙</span>
+                </div>
+            </mip-story-layer>
+            <mip-story-layer>
+                <div class="mask"></div>
+            </mip-story-layer>
+        </mip-story-view>
+    </mip-story>
+    <mip-stats-baidu>
+        <script type="application/json">
+            {
+                "token": "02890d4a309827eb62bc3335b2b28f7f",
+                "_setAutoPageview": [true]
+            }
+        </script>
+    </mip-stats-baidu>
+    <mip-cambrian site-id="1589820413983913"></mip-cambrian>
+    <script type="application/ld+json">
+        {
+            "@context": "https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+            "@id": "https://www.mipengine.org/static/img/mip-story/hawking/p9.jpg",
+            "appid": "1589820413983913",
+            "title": "一分钟了解霍金的一生",
+            "images": [
+                "https://www.mipengine.org/static/img/story/"
+                ],
+            "description": "一分钟了解霍金的一生",
+            "pubDate": "2018-03-9T08:00:01"
+        }
+    </script>
+    <script src="https://c.mipcdn.com/static/v1/mip.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-share/mip-share.js"></script>
+    <script src="./mip-story.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-stats-baidu/mip-stats-baidu.js"></script>
+    <script src="https://c.mipcdn.com/static/v1/mip-scrollbox/mip-scrollbox.js"></script>
+    <script src="https://c.mipcdn.com/extensions/platform/v1/mip-cambrian/mip-cambrian.js"></script>
+</body>
+</html>
